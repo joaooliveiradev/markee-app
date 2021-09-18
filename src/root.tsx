@@ -2,6 +2,8 @@ import { App } from 'app'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme } from 'resources/theme'
 
+import 'normalize.css'
+
 const Root = () => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
