@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import plusSymbolSvg from 'ui/icons/plus-symbol.svg'
+import { PlusSymbolSVG } from 'ui/SVGComponent'
 
 type ButtonProps = {
   className?: string,
@@ -7,7 +7,8 @@ type ButtonProps = {
 
 const Button = ({ className }: ButtonProps) => (
   <button className={className}>
-    <img src={plusSymbolSvg} alt='icone de soma svg' /> Adicionar arquivo
+    <PlusSymbolSVG width='14' height='14' className='plusSymbolSVG' />
+    Adicionar arquivo
   </button>
 )
 
@@ -17,15 +18,18 @@ const ButtonStyled = styled(Button)`${({ theme }) => css`
   height: 45px;
   border-radius: 6px;
   border-style: none;
-  font-size: 20px;
+  font-size: 22px;
   margin: 30px auto;
   line-height: 18px;
   letter-spacing: -0.02em;
   color: ${theme.colors.lightBlack};
-
-  & img {
-    height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .plusSymbolSVG {
+    margin-right: 10px;
+    height: 20px;
+    width: auto;
   }
-
 `}`
 export { ButtonStyled as Button }
