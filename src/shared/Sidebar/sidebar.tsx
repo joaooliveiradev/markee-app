@@ -1,15 +1,57 @@
-import styled from 'styled-components'
 import { Logo } from 'ui/Logo'
 import { Button } from 'ui/Button'
-type SidebarProps = {
-  className?: string,
+import { List } from 'ui/List'
+
+import styled from 'styled-components'
+import { LinkListProps } from 'resources/types'
+
+const linkListArr: Array<LinkListProps> = [
+  {
+    id: 1,
+    name: 'README.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+  {
+    id: 2,
+    name: 'CONTRIBUTING.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+  {
+    id: 3,
+    name: 'LICENSE.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+  {
+    id: 4,
+    name: 'Links.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+  {
+    id: 5,
+    name: 'roadmap.md',
+    content: '',
+    active: false,
+    status: 'saved',
+  },
+]
+
+type SideBarProps = {
+  className?: string
 }
 
-const Sidebar = ({ className }: SidebarProps) => (
+const Sidebar = ({ className }: SideBarProps) => (
   <aside className={className}>
     <Logo />
     <Button />
-    <div style={{ height: '150px' }}>4</div>
+    <List linkList={linkListArr} />
   </aside>
 )
 

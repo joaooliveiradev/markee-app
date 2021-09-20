@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Divider } from 'ui/Divider'
-import LogoSVG from 'ui/icons/logo.svg'
+
+import { LogoSVG } from 'ui/SVGComponent/'
 type LogoContainerProps = {
   className?: string,
 }
@@ -9,7 +10,7 @@ type LogoProps = {
 }
 const Logo = ({ className }: LogoProps) => (
   <div className={className}>
-    <img src={LogoSVG} alt='Logo Markee App' />
+    <LogoSVG width='164' height='44' />
   </div>
 )
 const LogoStyled = styled(Logo)`
