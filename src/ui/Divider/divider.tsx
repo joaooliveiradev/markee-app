@@ -8,31 +8,31 @@ const Divider = ({ className }: DividerProps) => (
 )
 const StyledDividerText = styled(Divider)`${({ theme }) => css`
       margin: 0;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 500;
       color: #FFF;
-      padding-left: 69px;
+      padding-left: 7rem;
       position: relative;
     ::before {
       content: '';
       display: block;
-      width: 28px;
-      height: 4px;
-      border-radius: 10px;
+      width: 2.8rem;
+      height: 0.4rem;
+      border-radius: 1rem;
       position: absolute;
       top: 47%;
-      left: 36px;
+      left: 3.6rem;
       background-color: ${theme.colors.primary};
     }
     ::after {
       content: '';
       display: block;
-      width: 227px;
-      height: 4px;
-      border-radius: 10px;
+      width: 22.7rem;
+      height: 0.4rem;
+      border-radius: 1rem;
       position: absolute;
       top: 47%;
-      left: 156px;
+      left: 15.6rem;
       background-color: ${theme.colors.primary};
     }
 `}`

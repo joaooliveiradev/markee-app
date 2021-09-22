@@ -58,7 +58,7 @@ const Sidebar = ({ className }: SideBarProps) => (
 const SidebarStyled = styled(Sidebar)`
   display: flex;
   flex-direction: column;
-  background-color: #1E293B;
+  background-color: ${({ theme }) => theme.colors.black};
 `
 
 export { SidebarStyled as Sidebar }

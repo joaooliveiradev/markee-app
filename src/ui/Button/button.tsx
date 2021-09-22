@@ -14,21 +14,21 @@ const Button = ({ className }: ButtonProps) => (
 
 const ButtonStyled = styled(Button)`${({ theme }) => css`
   background-color:  ${theme.colors.primary};
-  width: 345px;
-  height: 45px;
-  border-radius: 6px;
+  width: 34.5rem;
+  height: 4.5rem;
+  border-radius: 0.6rem;
   border-style: none;
-  font-size: 22px;
-  margin: 30px auto;
-  line-height: 18px;
+  font-size: 2.2rem;
+  margin: 3rem auto;
+  line-height: 1.8rem;
   letter-spacing: -0.02em;
   color: ${theme.colors.lightBlack};
   display: flex;
   align-items: center;
   justify-content: center;
   .plusSymbolSVG {
-    margin-right: 10px;
-    height: 20px;
+    margin-right: 1rem;
+    height: 2rem;
     width: auto;
   }
 `}`

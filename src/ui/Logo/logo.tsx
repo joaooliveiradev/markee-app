@@ -14,7 +14,7 @@ const Logo = ({ className }: LogoProps) => (
   </div>
 )
 const LogoStyled = styled(Logo)`
-  height: 150px;
+  height: 15rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +26,7 @@ const LogoContainer = ({ className }: LogoContainerProps) => (
   </div>
 )
 const LogoContainerStyled = styled(LogoContainer)`
-  height: 170px;
+  height: 17rem;
   display: flex;
   flex-direction: column;
 `

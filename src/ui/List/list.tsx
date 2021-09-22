@@ -16,7 +16,7 @@ const List = ({ linkList, className }: ListProps) => {
           <WhiteFileSVG width='42' height='42' color='#B0B4BB' className='whiteFileSVG' />
           <a href='/'>{link.name}</a>
           <button>
-            <DeleteIconSVG width='14px' height='14px' color='#FFF' className='deleteSVG' />
+            <DeleteIconSVG width='14' height='14' color='#FFF' className='deleteSVG' />
           </button>
         </li>
       ))}
@@ -26,23 +26,23 @@ const List = ({ linkList, className }: ListProps) => {
 
 const StyledList = styled(List)`
   list-style: none;
-  width: 345px;
+  width: 34.5rem;
   margin: 0 auto;
   padding: 0;
 
   .listContainer {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 1rem;
   }
 
   .whiteFileSVG{
-    margin-right: 15px;
+    margin-right: 1.5rem;
     color: #B0B4BB;
   }
 
   .listContainer a {
-    font-size: 22px;
+    font-size: 2.2rem;
     color: #B0B4BB;
     text-decoration: none;
     display: block;
