@@ -13,10 +13,10 @@ const List = ({ linkList, className }: ListProps) => {
     <ul className={className}>
       {linkList.map((link) => (
         <li key={link.id} className='listContainer'>
-          <WhiteFileSVG width='42' height='42' color='#B0B4BB' className='whiteFileSVG' />
+          <WhiteFileSVG width='42' height='42' opacity='0.65' className='whiteFileSVG' />
           <a href='/'>{link.name}</a>
           <button>
-            <DeleteIconSVG width='14' height='14' color='#FFF' className='deleteSVG' />
+            <DeleteIconSVG width='14' height='14' className='deleteSVG' />
           </button>
         </li>
       ))}

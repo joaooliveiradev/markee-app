@@ -27,7 +27,7 @@ const InputStyled = styled(Input)`${({ theme }) => css`
 const FileName = ({ className }: FileNameProps) => {
   return (
     <label className={className}>
-      <BlueFileSVG width='32' height='32' color='#1FC8E1' />
+      <BlueFileSVG width='32' height='32' />
       <InputStyled />
     </label>
   )
