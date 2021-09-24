@@ -6,20 +6,17 @@ type ListProps = {
   linkList: Array<LinkListProps>
   className?: string
 }
-
 type ListSVGProps = {
   active: boolean,
   status: string,
   className?: string
 }
-
 type ListItemProps = {
   active: boolean,
   status: string,
   name: string,
   className?: string
 }
-
 type StyledListProps = {
   active: boolean
 }
