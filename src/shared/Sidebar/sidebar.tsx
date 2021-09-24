@@ -10,7 +10,7 @@ const linkListArr: Array<LinkListProps> = [
     id: 1,
     name: 'README.md',
     content: '',
-    active: false,
+    active: true,
     status: 'saved',
   },
   {
@@ -24,7 +24,7 @@ const linkListArr: Array<LinkListProps> = [
     id: 3,
     name: 'LICENSE.md',
     content: '',
-    active: false,
+    active: true,
     status: 'saved',
   },
   {
@@ -32,14 +32,14 @@ const linkListArr: Array<LinkListProps> = [
     name: 'Links.md',
     content: '',
     active: false,
-    status: 'saved',
+    status: 'saving',
   },
   {
     id: 5,
     name: 'roadmap.md',
     content: '',
     active: false,
-    status: 'saved',
+    status: 'editing',
   },
 ]
 
@@ -47,13 +47,15 @@ type SideBarProps = {
   className?: string
 }
 
-const Sidebar = ({ className }: SideBarProps) => (
-  <aside className={className}>
-    <Logo />
-    <Button />
-    <List linkList={linkListArr} />
-  </aside>
-)
+const Sidebar = ({ className }: SideBarProps) => {
+  return (
+    <aside className={className}>
+      <Logo />
+      <Button />
+      <List linkList={linkListArr} />
+    </aside>
+  )
+}
 
 const SidebarStyled = styled(Sidebar)`
   display: flex;
