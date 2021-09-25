@@ -25,7 +25,7 @@ const linkListArr: Array<LinkListProps> = [
     name: 'LICENSE.md',
     content: '',
     active: true,
-    status: 'saved',
+    status: 'saving',
   },
   {
     id: 4,

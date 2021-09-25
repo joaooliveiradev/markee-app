@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { WhiteFileSVG, BlueFileSVG, EditingIconSVG, SavingIconSVG, SavedIconSVG, DeleteIconSVG } from 'ui/SVGComponent/'
 import { LinkListProps } from 'resources/types'
 
@@ -55,7 +55,6 @@ const List = ({ linkList, className }: ListProps) => (
     })}
   </ul>
 )
-
 const StyledListSVG = styled.div`
   margin-left: auto;
   width: 2rem;
