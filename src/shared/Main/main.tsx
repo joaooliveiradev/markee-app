@@ -1,17 +1,29 @@
 import styled from 'styled-components/macro'
+
 import { FileName } from 'ui/FileName'
 import { TextArea } from 'ui/TextArea/text-area'
+import { Content } from 'ui/Content'
 
+import { useState, ChangeEvent } from 'react'
 type MainProps = {
   className?: string
 }
 
-const Main = ({ className }: MainProps) => (
-  <main className={className}>
-    <FileName />
-    <TextArea />
-  </main>
-)
+const Main = ({ className }: MainProps) => {
+  const [content, setContent] = useState('')
+
+  const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setContent(e.target.value)
+  }
+
+  return (
+    <main className={className}>
+      <FileName />
+      <TextArea handleChange={handleContent} />
+      <Content content={content} />
+    </main>
+  )
+}
 
 const StyledMain = styled(Main)`
   display: grid;
@@ -25,8 +37,8 @@ const StyledMain = styled(Main)`
     content: '';
     position: absolute;
     width: 0.2rem;
-    height: 75rem;
-    background-color: #DFE1E7;
+    height: 94%;
+    background-color: ${({ theme }) => theme.colors.gray};
     margin: auto;
   }
 `
