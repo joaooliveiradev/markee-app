@@ -1,15 +1,26 @@
 import { BlueFileSVG } from 'ui/SVGComponent'
 import styled, { css } from 'styled-components'
-import { RefObject } from 'react'
+import { Dispatch, SetStateAction, RefObject, ChangeEvent } from 'react'
+import { filesArrProps } from 'resources/types'
 
 type FileNameProps = {
   className?: string,
-  inputRef?: RefObject<HTMLInputElement>
+  state: {
+    files: Array<filesArrProps>,
+    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
+    inputRef: RefObject<HTMLInputElement>
+  }
 }
 
-const Input = ({ className, inputRef }: FileNameProps) => (
-  <input type='text' className={className} spellCheck='false' ref={inputRef} />
-)
+const Input = ({ className, state }: FileNameProps) => {
+  const { files, setFiles, inputRef } = state
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setFiles(files.map(file => file.active === true ? ({ ...file, name: e.currentTarget.value }) : ({ ...file })))
+  }
+  return (
+    <input type='text' className={className} spellCheck='false' ref={inputRef} onChange={handleInput} value={files.find(file => file.active === true)?.name} />
+  )
+}
 
 const InputStyled = styled(Input)`${({ theme }) => css`
   width: 100%;
@@ -26,11 +37,11 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   }
 `}`
 
-const FileName = ({ className, inputRef }: FileNameProps) => {
+const FileName = ({ className, state }: FileNameProps) => {
   return (
     <label className={className}>
       <BlueFileSVG width='32' height='32' />
-      <InputStyled inputRef={inputRef} />
+      <InputStyled state={state} />
     </label>
   )
 }

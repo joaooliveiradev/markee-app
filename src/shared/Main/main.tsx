@@ -3,23 +3,26 @@ import styled from 'styled-components/macro'
 import { FileName } from 'ui/FileName'
 import { TextArea } from 'ui/TextArea/text-area'
 import { Content } from 'ui/Content'
-
-import { useState, ChangeEvent, RefObject } from 'react'
+import { useState, ChangeEvent, Dispatch, SetStateAction, RefObject } from 'react'
+import { filesArrProps } from 'resources/types'
 type MainProps = {
   className?: string,
-  inputRef: RefObject<HTMLInputElement>
+  state: {
+    files: Array<filesArrProps>,
+    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
+    inputRef: RefObject<HTMLInputElement>
+  }
 }
 
-const Main = ({ className, inputRef }: MainProps) => {
+const Main = ({ className, state }: MainProps) => {
   const [content, setContent] = useState('')
-
   const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
   }
 
   return (
     <main className={className}>
-      <FileName inputRef={inputRef} />
+      <FileName state={state} />
       <TextArea handleChange={handleContent} />
       <Content content={content} />
     </main>

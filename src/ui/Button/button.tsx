@@ -9,7 +9,7 @@ type ButtonProps = {
   state: {
     files: Array<filesArrProps>,
     setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
-    inputRef: RefObject<HTMLInputElement>
+    inputRef: RefObject<HTMLInputElement>,
   }
 }
 
