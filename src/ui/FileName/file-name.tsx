@@ -1,24 +1,18 @@
 import { BlueFileSVG } from 'ui/SVGComponent'
 import styled, { css } from 'styled-components'
-import { Dispatch, SetStateAction, RefObject, ChangeEvent } from 'react'
-import { filesArrProps } from 'resources/types'
-
+import { RefObject, ChangeEvent } from 'react'
 type FileNameProps = {
+  onChange: (title: string) => void,
   className?: string,
-  filesObj: filesArrProps
-  state: {
-    files: Array<filesArrProps>,
-    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
-    inputRef: RefObject<HTMLInputElement>
-  },
+  value: string,
+  inputRef: RefObject<HTMLInputElement>
 }
-const Input = ({ className, filesObj, state }: FileNameProps) => {
-  const { files, setFiles, inputRef } = state
+const Input = ({ onChange, className, value, inputRef }: FileNameProps) => {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setFiles(files.map(file => file.active === true ? ({ ...file, name: e.currentTarget.value }) : ({ ...file })))
+    onChange(e.currentTarget.value)
   }
   return (
-    <input type='text' className={className} spellCheck='false' ref={inputRef} onChange={handleInput} value={filesObj.name} />
+    <input type='text' className={className} spellCheck='false' ref={inputRef} onChange={handleInput} value={value} />
   )
 }
 const InputStyled = styled(Input)`${({ theme }) => css`
@@ -36,11 +30,11 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   }
 `}`
 
-const FileName = ({ className, filesObj, state }: FileNameProps) => {
+const FileName = ({ onChange, className, value, inputRef }: FileNameProps) => {
   return (
     <label className={className}>
       <BlueFileSVG width='32' height='32' />
-      <InputStyled filesObj={filesObj} state={state} />
+      <InputStyled onChange={onChange} value={value} inputRef={inputRef} />
     </label>
   )
 }

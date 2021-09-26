@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro'
 import marked from 'marked'
-import { filesArrProps } from 'resources/types'
 import 'highlight.js/styles/github.css'
 
 import('highlight.js')
@@ -17,13 +16,13 @@ import('highlight.js')
   })
 
 type ContentProps = {
-  filesObj: filesArrProps,
+  content: string,
   className?: string,
 }
 
-const Content = ({ filesObj, className }: ContentProps) => {
+const Content = ({ content, className }: ContentProps) => {
   return (
-    <article className={className} dangerouslySetInnerHTML={{ __html: marked(filesObj.content) }} />
+    <article className={className} dangerouslySetInnerHTML={{ __html: marked(content) }} />
   )
 }
 const ContentStyled = styled(Content)`

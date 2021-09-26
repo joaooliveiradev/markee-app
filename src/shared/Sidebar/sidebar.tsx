@@ -18,7 +18,7 @@ const Sidebar = ({ className, state }: SideBarProps) => {
     <aside className={className}>
       <Logo />
       <Button state={{ files, setFiles, inputRef }} />
-      <List filesArr={files} />
+      <List state={{ files, setFiles }} inputRef={inputRef} />
     </aside>
   )
 }
