@@ -2,19 +2,21 @@ import styled, { css } from 'styled-components'
 import { PlusSymbolSVG } from 'ui/SVGComponent'
 import { filesArrProps } from 'resources/types'
 import { v4 as uuidv4 } from 'uuid'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, RefObject } from 'react'
 
 type ButtonProps = {
   className?: string,
   state: {
     files: Array<filesArrProps>,
-    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>
+    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
+    inputRef: RefObject<HTMLInputElement>
   }
 }
 
 const Button = ({ className, state }: ButtonProps) => {
-  const { files, setFiles } = state
+  const { files, setFiles, inputRef } = state
   const HandleFile = () => {
+    inputRef.current?.focus()
     const filterFile = (arr: Array<filesArrProps>) => arr.map(file => ({ ...file, active: false }))
     const newObjValues: filesArrProps = {
       id: uuidv4(),

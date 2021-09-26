@@ -4,12 +4,13 @@ import { FileName } from 'ui/FileName'
 import { TextArea } from 'ui/TextArea/text-area'
 import { Content } from 'ui/Content'
 
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, RefObject } from 'react'
 type MainProps = {
-  className?: string
+  className?: string,
+  inputRef: RefObject<HTMLInputElement>
 }
 
-const Main = ({ className }: MainProps) => {
+const Main = ({ className, inputRef }: MainProps) => {
   const [content, setContent] = useState('')
 
   const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,7 +19,7 @@ const Main = ({ className }: MainProps) => {
 
   return (
     <main className={className}>
-      <FileName />
+      <FileName inputRef={inputRef} />
       <TextArea handleChange={handleContent} />
       <Content content={content} />
     </main>

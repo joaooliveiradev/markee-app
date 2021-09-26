@@ -2,17 +2,19 @@ import { Logo } from 'ui/Logo'
 import { Button } from 'ui/Button'
 import { List } from 'ui/List'
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useState, RefObject } from 'react'
 import { filesArrProps } from 'resources/types'
 type SideBarProps = {
-  className?: string
+  className?: string,
+  inputRef: RefObject<HTMLInputElement>
 }
-const Sidebar = ({ className }: SideBarProps) => {
+const Sidebar = ({ className, inputRef }: SideBarProps) => {
   const [files, setFiles] = useState<Array<filesArrProps>>([])
+
   return (
     <aside className={className}>
       <Logo />
-      <Button state={{ files, setFiles }} />
+      <Button state={{ files, setFiles, inputRef }} />
       <List filesArr={files} />
     </aside>
   )

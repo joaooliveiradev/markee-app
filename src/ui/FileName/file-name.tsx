@@ -1,12 +1,14 @@
 import { BlueFileSVG } from 'ui/SVGComponent'
 import styled, { css } from 'styled-components'
+import { RefObject } from 'react'
 
 type FileNameProps = {
-  className?: string
+  className?: string,
+  inputRef?: RefObject<HTMLInputElement>
 }
 
-const Input = ({ className }: FileNameProps) => (
-  <input type='text' className={className} spellCheck='false' />
+const Input = ({ className, inputRef }: FileNameProps) => (
+  <input type='text' className={className} spellCheck='false' ref={inputRef} />
 )
 
 const InputStyled = styled(Input)`${({ theme }) => css`
@@ -24,11 +26,11 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   }
 `}`
 
-const FileName = ({ className }: FileNameProps) => {
+const FileName = ({ className, inputRef }: FileNameProps) => {
   return (
     <label className={className}>
       <BlueFileSVG width='32' height='32' />
-      <InputStyled />
+      <InputStyled inputRef={inputRef} />
     </label>
   )
 }
