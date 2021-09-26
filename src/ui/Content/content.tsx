@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 import marked from 'marked'
-
+import { filesArrProps } from 'resources/types'
 import 'highlight.js/styles/github.css'
 
 import('highlight.js')
@@ -17,13 +17,15 @@ import('highlight.js')
   })
 
 type ContentProps = {
-  content: string,
+  filesObj: filesArrProps,
   className?: string,
 }
 
-const Content = ({ content, className }: ContentProps) => (
-  <article className={className} dangerouslySetInnerHTML={{ __html: marked(content) }} />
-)
+const Content = ({ filesObj, className }: ContentProps) => {
+  return (
+    <article className={className} dangerouslySetInnerHTML={{ __html: marked(filesObj.content) }} />
+  )
+}
 const ContentStyled = styled(Content)`
   grid-area: result;
   height: 100%;

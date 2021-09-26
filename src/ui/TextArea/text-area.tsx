@@ -1,13 +1,21 @@
 import styled from 'styled-components'
-import { ChangeEventHandler } from 'react'
+import { filesArrProps } from 'resources/types'
+import { Dispatch, SetStateAction, ChangeEvent } from 'react'
 type TextAreaProps = {
-  handleChange: ChangeEventHandler<HTMLTextAreaElement>,
-  className?: string
+  className?: string,
+  state: {
+    files: Array<filesArrProps>,
+    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
+  },
 }
 
-const TextArea = ({ handleChange, className }: TextAreaProps) => {
+const TextArea = ({ className, state }: TextAreaProps) => {
+  const { files, setFiles } = state
+  const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setFiles(files.map(file => file.active === true ? ({ ...file, content: e.currentTarget.value }) : ({ ...file })))
+  }
   return (
-    <textarea className={className} spellCheck='false' onChange={handleChange} />
+    <textarea className={className} spellCheck='false' onChange={handleContent} />
   )
 }
 

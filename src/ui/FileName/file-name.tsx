@@ -5,23 +5,22 @@ import { filesArrProps } from 'resources/types'
 
 type FileNameProps = {
   className?: string,
+  filesObj: filesArrProps
   state: {
     files: Array<filesArrProps>,
     setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>,
     inputRef: RefObject<HTMLInputElement>
-  }
+  },
 }
-
-const Input = ({ className, state }: FileNameProps) => {
+const Input = ({ className, filesObj, state }: FileNameProps) => {
   const { files, setFiles, inputRef } = state
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setFiles(files.map(file => file.active === true ? ({ ...file, name: e.currentTarget.value }) : ({ ...file })))
   }
   return (
-    <input type='text' className={className} spellCheck='false' ref={inputRef} onChange={handleInput} value={files.find(file => file.active === true)?.name} />
+    <input type='text' className={className} spellCheck='false' ref={inputRef} onChange={handleInput} value={filesObj.name} />
   )
 }
-
 const InputStyled = styled(Input)`${({ theme }) => css`
   width: 100%;
   background-color: #F9FBFF;
@@ -37,11 +36,11 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   }
 `}`
 
-const FileName = ({ className, state }: FileNameProps) => {
+const FileName = ({ className, filesObj, state }: FileNameProps) => {
   return (
     <label className={className}>
       <BlueFileSVG width='32' height='32' />
-      <InputStyled state={state} />
+      <InputStyled filesObj={filesObj} state={state} />
     </label>
   )
 }
