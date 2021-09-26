@@ -1,5 +1,5 @@
-export type LinkListProps = {
-  id: number,
+export type filesArrProps = {
+  id: string,
   name: string,
   content: string,
   active: boolean

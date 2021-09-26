@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro'
 import { WhiteFileSVG, BlueFileSVG, EditingIconSVG, SavingIconSVG, SavedIconSVG, DeleteIconSVG } from 'ui/SVGComponent/'
-import { LinkListProps } from 'resources/types'
+import { filesArrProps } from 'resources/types'
 
 type ListProps = {
-  linkList: Array<LinkListProps>
+  filesArr: Array<filesArrProps>
   className?: string
 }
 type ListSVGProps = {
@@ -46,12 +46,12 @@ const ListItem = ({ active, status, name, className }: ListItemProps) => (
   </StyledListItem>
 )
 
-const List = ({ linkList, className }: ListProps) => (
+const List = ({ filesArr, className }: ListProps) => (
   <ul className={className}>
-    {linkList.map((link) => {
-      return link.active
-        ? <ListItem key={link.id} active={link.active} status={link.status} name={link.name} />
-        : <ListItem key={link.id} active={link.active} status={link.status} name={link.name} />
+    {filesArr.map((file) => {
+      return file.active
+        ? <ListItem key={file.id} active={file.active} status={file.status} name={file.name} />
+        : <ListItem key={file.id} active={file.active} status={file.status} name={file.name} />
     })}
   </ul>
 )
