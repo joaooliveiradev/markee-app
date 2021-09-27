@@ -1,16 +1,18 @@
-import styled from 'styled-components'
-import { ChangeEventHandler } from 'react'
+import styled from 'styled-components/macro'
+import { ChangeEvent } from 'react'
 type TextAreaProps = {
-  handleChange: ChangeEventHandler<HTMLTextAreaElement>,
-  className?: string
+  className?: string,
+  content: string,
+  onChange: (content: string) => void,
 }
-
-const TextArea = ({ handleChange, className }: TextAreaProps) => {
+const TextArea = ({ onChange, content, className }: TextAreaProps) => {
+  const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(e.currentTarget.value)
+  }
   return (
-    <textarea className={className} spellCheck='false' onChange={handleChange} />
+    <textarea className={className} spellCheck='false' onChange={handleContent} value={content} />
   )
 }
-
 const TextAreaStyled = styled(TextArea)`
   grid-area: textarea;
   height: 100%;

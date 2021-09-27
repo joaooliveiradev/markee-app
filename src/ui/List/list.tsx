@@ -1,26 +1,32 @@
 import styled from 'styled-components/macro'
 import { WhiteFileSVG, BlueFileSVG, EditingIconSVG, SavingIconSVG, SavedIconSVG, DeleteIconSVG } from 'ui/SVGComponent/'
 import { filesArrProps } from 'resources/types'
-
 type ListProps = {
-  filesArr: Array<filesArrProps>
-  className?: string
+  handleLinkDelete: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => void,
+  files: Array<filesArrProps>,
+  className?: string,
 }
 type ListSVGProps = {
+  handleLinkDelete: (clickId: string) => void,
+  id: string,
   active: boolean,
   status: string,
   className?: string
 }
 type ListItemProps = {
+  handleLinkDelete: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => void,
+  id: string
   active: boolean,
   status: string,
   name: string,
-  className?: string
+  className?: string,
 }
 type StyledListProps = {
   active: boolean
 }
-const ListSVG = ({ active, status, className }: ListSVGProps) => {
+const ListSVG = ({ handleLinkDelete, id, active, status, className }: ListSVGProps) => {
   return active
     ? (
       <StyledListSVG className={className}>
@@ -31,30 +37,32 @@ const ListSVG = ({ active, status, className }: ListSVGProps) => {
       )
     : (
       <StyledListSVG className={className}>
-        <button>
+        <button onClick={() => handleLinkDelete(id)}>
           <DeleteIconSVG width='14' height='14' />
         </button>
       </StyledListSVG>
       )
 }
-
-const ListItem = ({ active, status, name, className }: ListItemProps) => (
+const ListItem = ({ handleLinkDelete, handleListChangeItem, id, active, status, name, className }: ListItemProps) => (
   <StyledListItem className={className} active={active}>
-    {active ? <BlueFileSVG width='36' height='36' className='fileSVG' /> : <WhiteFileSVG width='36' height='36' opacity='0.65' className='fileSVG' />}
-    <a className='link' href='/'> {name}</a>
-    <ListSVG active={active} status={status} />
+    <div className='linkSVGContainer' onClick={() => handleListChangeItem(id)}>
+      {active ? <BlueFileSVG width='36' height='36' className='fileSVG' /> : <WhiteFileSVG width='36' height='36' opacity='0.65' className='fileSVG' />}
+      <a className='link' href='/'> {name}</a>
+    </div>
+    <ListSVG handleLinkDelete={handleLinkDelete} id={id} active={active} status={status} />
   </StyledListItem>
 )
-
-const List = ({ filesArr, className }: ListProps) => (
-  <ul className={className}>
-    {filesArr.map((file) => {
-      return file.active
-        ? <ListItem key={file.id} active={file.active} status={file.status} name={file.name} />
-        : <ListItem key={file.id} active={file.active} status={file.status} name={file.name} />
-    })}
-  </ul>
-)
+const List = ({ handleLinkDelete, handleListChangeItem, files, className }: ListProps) => {
+  return (
+    <ul className={className}>
+      {files.map((file) => {
+        return file.active
+          ? <ListItem handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
+          : <ListItem handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
+      })}
+    </ul>
+  )
+}
 const StyledListSVG = styled.div`
   margin-left: auto;
   width: 2rem;
@@ -62,7 +70,6 @@ const StyledListSVG = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   button {
     background: transparent;
     border: none;
@@ -70,7 +77,6 @@ const StyledListSVG = styled.div`
     display: none;
   }
 `
-
 const StyledListItem = styled.li <StyledListProps>`
   display: flex;
   align-items: center;
@@ -82,11 +88,16 @@ const StyledListItem = styled.li <StyledListProps>`
     text-decoration: none;
     display: block;
   }
-
+  .linkSVGContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
   .fileSVG{
     margin-right: 1.5rem;
   }
-
   :hover{
     background: ${({ theme }) => theme.colors.lightBlack};
     border-radius: 0.6rem;
@@ -94,7 +105,6 @@ const StyledListItem = styled.li <StyledListProps>`
       display: block;
     }
   }
-
   ${({ active, theme }) => active && `
     background-color: ${theme.colors.lightBlack};
     border-radius: 0.6rem;

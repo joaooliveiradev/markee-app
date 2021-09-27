@@ -107,7 +107,6 @@ const SavingIconSVG = ({ width, height, className }: SavingIconSVGProps) => {
     </svg>
   )
 }
-
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -117,7 +116,6 @@ const rotate = keyframes`
     transform: rotate(359deg);
   }
 `
-
 const dash = keyframes`
   100% {
     stroke-dashoffset: 0;
@@ -132,6 +130,6 @@ const StyledSavingIconSVG = styled(SavingIconSVG)`
 const StyledSavedIconSVG = styled(SavedIconSVG)`
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
-    animation: ${dash} 3s ease-out forwards infinite;
+    animation: ${dash} 3s ease-out forwards;
 `
 export { WhiteFileSVG, BlueFileSVG, DeleteIconSVG, LogoSVG, PlusSymbolSVG, EditingIconSVG, StyledSavedIconSVG as SavedIconSVG, StyledSavingIconSVG as SavingIconSVG }

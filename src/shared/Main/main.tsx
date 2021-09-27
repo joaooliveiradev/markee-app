@@ -1,30 +1,26 @@
 import styled from 'styled-components/macro'
-
 import { FileName } from 'ui/FileName'
 import { TextArea } from 'ui/TextArea/text-area'
 import { Content } from 'ui/Content'
-
-import { useState, ChangeEvent } from 'react'
+import { RefObject } from 'react'
+import { filesArrProps } from 'resources/types'
 type MainProps = {
-  className?: string
+  handleChangeFileName: (title: string) => void,
+  handleChangeContent: (content: string) => void,
+  className?: string,
+  fileActive?: filesArrProps | undefined,
+  inputRef: RefObject<HTMLInputElement>
 }
-
-const Main = ({ className }: MainProps) => {
-  const [content, setContent] = useState('')
-
-  const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setContent(e.target.value)
-  }
-
+const Main = ({ handleChangeFileName, handleChangeContent, fileActive, className, inputRef }: MainProps) => {
+  if (!fileActive) return null
   return (
     <main className={className}>
-      <FileName />
-      <TextArea handleChange={handleContent} />
-      <Content content={content} />
+      <FileName onChange={handleChangeFileName} value={fileActive.name} inputRef={inputRef} />
+      <TextArea onChange={handleChangeContent} content={fileActive.content} />
+      <Content content={fileActive.content} />
     </main>
   )
 }
-
 const StyledMain = styled(Main)`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -32,7 +28,6 @@ const StyledMain = styled(Main)`
   grid-template-areas: 'filename filename'
                         'textarea result';
   background-color: #F9FBFF;
-
   ::before {
     content: '';
     position: absolute;

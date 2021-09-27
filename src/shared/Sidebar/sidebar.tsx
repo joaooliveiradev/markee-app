@@ -1,19 +1,21 @@
 import { Logo } from 'ui/Logo'
 import { Button } from 'ui/Button'
 import { List } from 'ui/List'
-import styled from 'styled-components'
-import { useState } from 'react'
+import styled from 'styled-components/macro'
 import { filesArrProps } from 'resources/types'
 type SideBarProps = {
-  className?: string
+  className?: string,
+  handleLinkDelete: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => void,
+  handleListAddItem: () => void,
+  files: Array<filesArrProps>,
 }
-const Sidebar = ({ className }: SideBarProps) => {
-  const [files, setFiles] = useState<Array<filesArrProps>>([])
+const Sidebar = ({ handleLinkDelete, handleListChangeItem, handleListAddItem, className, files }: SideBarProps) => {
   return (
     <aside className={className}>
       <Logo />
-      <Button state={{ files, setFiles }} />
-      <List filesArr={files} />
+      <Button handleListAddItem={handleListAddItem} />
+      <List handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} files={files} />
     </aside>
   )
 }
