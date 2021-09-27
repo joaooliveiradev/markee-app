@@ -130,6 +130,6 @@ const StyledSavingIconSVG = styled(SavingIconSVG)`
 const StyledSavedIconSVG = styled(SavedIconSVG)`
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
-    animation: ${dash} 3s ease-out forwards infinite;
+    animation: ${dash} 3s ease-out forwards;
 `
 export { WhiteFileSVG, BlueFileSVG, DeleteIconSVG, LogoSVG, PlusSymbolSVG, EditingIconSVG, StyledSavedIconSVG as SavedIconSVG, StyledSavingIconSVG as SavingIconSVG }
