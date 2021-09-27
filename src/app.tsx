@@ -6,7 +6,6 @@ const App = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
   const fileActive = files.find(file => file.active === true)
-  console.log(files)
   useEffect(() => {
     if (fileActive?.status !== 'editing') {
       return
@@ -15,7 +14,7 @@ const App = () => {
       handleStatus('saving')
       setTimeout(() => {
         handleStatus('saved')
-      }, 301)
+      }, 600)
     }, 300)
     // TODO: Ajustar o estado após salvar, pois ele fica salvando direto.
     return () => {
@@ -58,9 +57,18 @@ const App = () => {
       }
     }))
   }
+  const handleLinkDelete = (clickId: string) => setFiles(files.filter(file => file.id !== clickId))
+  const handleList = (clickId: string) => {
+    setFiles((files) => files.map(file => {
+      if (file.active) return { ...file, active: false }
+      if (file.id === clickId) return { ...file, active: true }
+      return { ...file }
+    }))
+    inputRef.current?.focus()
+  }
   return (
     <>
-      <Sidebar state={{ files, setFiles, inputRef }} />
+      <Sidebar handleLinkDelete={handleLinkDelete} handleList={handleList} state={{ files, setFiles, inputRef }} />
       <Main handleChangeFileName={handleChangeFileName} handleChangeContent={handleChangeContent} fileActive={fileActive} inputRef={inputRef} />
     </>
   )

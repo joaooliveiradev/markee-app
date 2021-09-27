@@ -1,37 +1,35 @@
 import styled from 'styled-components/macro'
 import { WhiteFileSVG, BlueFileSVG, EditingIconSVG, SavingIconSVG, SavedIconSVG, DeleteIconSVG } from 'ui/SVGComponent/'
 import { filesArrProps } from 'resources/types'
-import { Dispatch, RefObject, SetStateAction } from 'react'
 
 type ListProps = {
+  handleLinkDelete: (clickId: string) => void,
+  handleList: (clickId: string) => void,
   state: {
     files: Array<filesArrProps>,
-    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>
   }
   className?: string,
-  inputRef: RefObject<HTMLInputElement>
 }
 type ListSVGProps = {
+  handleLinkDelete: (clickId: string) => void,
+  id: string,
   active: boolean,
   status: string,
   className?: string
 }
 type ListItemProps = {
-  state: {
-    files: Array<filesArrProps>,
-    setFiles: Dispatch<SetStateAction<Array<filesArrProps>>>
-  }
+  handleLinkDelete: (clickId: string) => void,
+  handleList: (clickId: string) => void,
   id: string
   active: boolean,
   status: string,
   name: string,
   className?: string,
-  inputRef: RefObject<HTMLInputElement>
 }
 type StyledListProps = {
   active: boolean
 }
-const ListSVG = ({ active, status, className }: ListSVGProps) => {
+const ListSVG = ({ handleLinkDelete, id, active, status, className }: ListSVGProps) => {
   return active
     ? (
       <StyledListSVG className={className}>
@@ -39,48 +37,33 @@ const ListSVG = ({ active, status, className }: ListSVGProps) => {
         {status === 'editing' && <EditingIconSVG width='8' height='9' />}
         {status === 'saving' && <SavingIconSVG width='13' height='13' />}
       </StyledListSVG>
-      )
+    )
     : (
       <StyledListSVG className={className}>
-        <button>
+        <button onClick={() => handleLinkDelete(id)}>
           <DeleteIconSVG width='14' height='14' />
         </button>
       </StyledListSVG>
-      )
+    )
 }
 
-const ListItem = ({ state, id, active, status, name, className, inputRef }: ListItemProps) => {
-  const handleList = (clickId: string) => {
-    const { files, setFiles } = state
-    const newArr = files.map(file => {
-      if (file.id === clickId) {
-        return ({ ...file, active: true })
-      } else if (file.active) {
-        return ({ ...file, active: false })
-      } else {
-        return ({ ...file })
-      }
-    })
-    setFiles(newArr)
-    inputRef.current?.focus()
-  }
-  return (
-    <StyledListItem className={className} active={active} onClick={() => handleList(id)}>
+const ListItem = ({ handleLinkDelete, handleList, id, active, status, name, className }: ListItemProps) => (
+  <StyledListItem className={className} active={active}>
+    <div className='linkSVGContainer' onClick={() => handleList(id)}>
       {active ? <BlueFileSVG width='36' height='36' className='fileSVG' /> : <WhiteFileSVG width='36' height='36' opacity='0.65' className='fileSVG' />}
       <a className='link' href='/'> {name}</a>
-      <ListSVG active={active} status={status} />
-    </StyledListItem>
-  )
-}
-
-const List = ({ state, className, inputRef }: ListProps) => {
+    </div>
+    <ListSVG handleLinkDelete={handleLinkDelete} id={id} active={active} status={status} />
+  </StyledListItem>
+)
+const List = ({ handleLinkDelete, handleList, state, className }: ListProps) => {
   const { files } = state
   return (
     <ul className={className}>
       {files.map((file) => {
         return file.active
-          ? <ListItem key={file.id} state={state} id={file.id} active={file.active} status={file.status} name={file.name} inputRef={inputRef} />
-          : <ListItem key={file.id} state={state} id={file.id} active={file.active} status={file.status} name={file.name} inputRef={inputRef} />
+          ? <ListItem handleLinkDelete={handleLinkDelete} handleList={handleList} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
+          : <ListItem handleLinkDelete={handleLinkDelete} handleList={handleList} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
       })}
     </ul>
   )
@@ -105,13 +88,19 @@ const StyledListItem = styled.li <StyledListProps>`
   display: flex;
   align-items: center;
   padding: 1rem;
-  cursor: pointer;
 
   .link {
     font-size: 2.2rem;
     color: #B0B4BB;
     text-decoration: none;
     display: block;
+  }
+  .linkSVGContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
   }
 
   .fileSVG{
