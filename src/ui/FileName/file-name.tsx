@@ -29,7 +29,6 @@ const InputStyled = styled(Input)`${({ theme }) => css`
     outline: none;
   }
 `}`
-
 const FileName = ({ onChange, className, value, inputRef }: FileNameProps) => {
   return (
     <label className={className}>
@@ -38,7 +37,6 @@ const FileName = ({ onChange, className, value, inputRef }: FileNameProps) => {
     </label>
   )
 }
-
 const FileNameStyled = styled(FileName)`
   grid-area: filename;
   height: 4rem;
@@ -46,5 +44,4 @@ const FileNameStyled = styled(FileName)`
   align-items: center;
   margin: 2rem 3rem 3rem 3rem;
 `
-
 export { FileNameStyled as FileName }

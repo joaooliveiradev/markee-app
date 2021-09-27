@@ -107,7 +107,6 @@ const SavingIconSVG = ({ width, height, className }: SavingIconSVGProps) => {
     </svg>
   )
 }
-
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -117,7 +116,6 @@ const rotate = keyframes`
     transform: rotate(359deg);
   }
 `
-
 const dash = keyframes`
   100% {
     stroke-dashoffset: 0;

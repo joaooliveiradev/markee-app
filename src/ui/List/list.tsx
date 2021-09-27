@@ -1,13 +1,10 @@
 import styled from 'styled-components/macro'
 import { WhiteFileSVG, BlueFileSVG, EditingIconSVG, SavingIconSVG, SavedIconSVG, DeleteIconSVG } from 'ui/SVGComponent/'
 import { filesArrProps } from 'resources/types'
-
 type ListProps = {
   handleLinkDelete: (clickId: string) => void,
   handleListChangeItem: (clickId: string) => void,
-  state: {
-    files: Array<filesArrProps>,
-  }
+  files: Array<filesArrProps>,
   className?: string,
 }
 type ListSVGProps = {
@@ -46,7 +43,6 @@ const ListSVG = ({ handleLinkDelete, id, active, status, className }: ListSVGPro
       </StyledListSVG>
       )
 }
-
 const ListItem = ({ handleLinkDelete, handleListChangeItem, id, active, status, name, className }: ListItemProps) => (
   <StyledListItem className={className} active={active}>
     <div className='linkSVGContainer' onClick={() => handleListChangeItem(id)}>
@@ -56,8 +52,7 @@ const ListItem = ({ handleLinkDelete, handleListChangeItem, id, active, status, 
     <ListSVG handleLinkDelete={handleLinkDelete} id={id} active={active} status={status} />
   </StyledListItem>
 )
-const List = ({ handleLinkDelete, handleListChangeItem, state, className }: ListProps) => {
-  const { files } = state
+const List = ({ handleLinkDelete, handleListChangeItem, files, className }: ListProps) => {
   return (
     <ul className={className}>
       {files.map((file) => {
@@ -75,7 +70,6 @@ const StyledListSVG = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   button {
     background: transparent;
     border: none;
@@ -83,7 +77,6 @@ const StyledListSVG = styled.div`
     display: none;
   }
 `
-
 const StyledListItem = styled.li <StyledListProps>`
   display: flex;
   align-items: center;
@@ -102,11 +95,9 @@ const StyledListItem = styled.li <StyledListProps>`
     align-items: center;
     cursor: pointer;
   }
-
   .fileSVG{
     margin-right: 1.5rem;
   }
-
   :hover{
     background: ${({ theme }) => theme.colors.lightBlack};
     border-radius: 0.6rem;
@@ -114,7 +105,6 @@ const StyledListItem = styled.li <StyledListProps>`
       display: block;
     }
   }
-
   ${({ active, theme }) => active && `
     background-color: ${theme.colors.lightBlack};
     border-radius: 0.6rem;

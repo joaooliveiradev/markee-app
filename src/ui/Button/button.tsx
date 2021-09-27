@@ -1,11 +1,9 @@
 import styled, { css } from 'styled-components'
 import { PlusSymbolSVG } from 'ui/SVGComponent'
-
 type ButtonProps = {
   className?: string,
   handleListAddItem: () => void,
 }
-
 const Button = ({ handleListAddItem, className }: ButtonProps) => {
   return (
     <button className={className} onClick={handleListAddItem}>
@@ -14,7 +12,6 @@ const Button = ({ handleListAddItem, className }: ButtonProps) => {
     </button>
   )
 }
-
 const ButtonStyled = styled(Button)`${({ theme }) => css`
   background-color:  ${theme.colors.primary};
   width: 34.5rem;

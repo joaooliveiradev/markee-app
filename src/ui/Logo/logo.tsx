@@ -1,6 +1,5 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { Divider } from 'ui/Divider'
-
 import { LogoSVG } from 'ui/SVGComponent/'
 type LogoContainerProps = {
   className?: string,

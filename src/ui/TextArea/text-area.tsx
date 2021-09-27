@@ -1,12 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { ChangeEvent } from 'react'
-
 type TextAreaProps = {
   className?: string,
   content: string,
   onChange: (content: string) => void,
 }
-
 const TextArea = ({ onChange, content, className }: TextAreaProps) => {
   const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e.currentTarget.value)
@@ -15,7 +13,6 @@ const TextArea = ({ onChange, content, className }: TextAreaProps) => {
     <textarea className={className} spellCheck='false' onChange={handleContent} value={content} />
   )
 }
-
 const TextAreaStyled = styled(TextArea)`
   grid-area: textarea;
   height: 100%;

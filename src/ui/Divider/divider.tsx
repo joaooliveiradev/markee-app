@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-
 type DividerProps = {
   className?: string,
 }

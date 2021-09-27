@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro'
 import marked from 'marked'
 import 'highlight.js/styles/github.css'
-
 import('highlight.js')
   .then(hglt => {
     const h = hglt.default
@@ -14,7 +13,6 @@ import('highlight.js')
       },
     })
   })
-
 type ContentProps = {
   content: string,
   className?: string,
@@ -31,8 +29,6 @@ const ContentStyled = styled(Content)`
   font-size: 2.6rem;
   padding-left: 20px;
   color: ${({ theme }) => theme.colors.lightBlack};
-
-
   h1,h2,h3,h4,h5,h5{
       margin: 0;
   }
