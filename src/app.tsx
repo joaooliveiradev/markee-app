@@ -15,7 +15,6 @@ const App = () => {
         handleStatus('saved')
       }, 600)
     }, 300)
-    // TODO: Ajustar o estado após salvar, pois ele fica salvando direto.
     return () => {
       clearTimeout(savingTimer)
     }
