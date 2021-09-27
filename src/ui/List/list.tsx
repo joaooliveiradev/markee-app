@@ -39,14 +39,14 @@ const ListSVG = ({ active, status, className }: ListSVGProps) => {
         {status === 'editing' && <EditingIconSVG width='8' height='9' />}
         {status === 'saving' && <SavingIconSVG width='13' height='13' />}
       </StyledListSVG>
-    )
+      )
     : (
       <StyledListSVG className={className}>
         <button>
           <DeleteIconSVG width='14' height='14' />
         </button>
       </StyledListSVG>
-    )
+      )
 }
 
 const ListItem = ({ state, id, active, status, name, className, inputRef }: ListItemProps) => {

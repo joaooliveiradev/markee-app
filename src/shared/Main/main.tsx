@@ -8,7 +8,8 @@ import { filesArrProps } from 'resources/types'
 
 type MainProps = {
   handleChangeFileName: (title: string) => void,
-  handleChangeContent: (content: string) => void
+  handleChangeContent: (content: string) => void,
+
   className?: string,
   fileActive?: filesArrProps | undefined,
   inputRef: RefObject<HTMLInputElement>
