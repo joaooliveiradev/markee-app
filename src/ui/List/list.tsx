@@ -4,7 +4,7 @@ import { filesArrProps } from 'resources/types'
 
 type ListProps = {
   handleLinkDelete: (clickId: string) => void,
-  handleList: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => void,
   state: {
     files: Array<filesArrProps>,
   }
@@ -19,7 +19,7 @@ type ListSVGProps = {
 }
 type ListItemProps = {
   handleLinkDelete: (clickId: string) => void,
-  handleList: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => void,
   id: string
   active: boolean,
   status: string,
@@ -37,33 +37,33 @@ const ListSVG = ({ handleLinkDelete, id, active, status, className }: ListSVGPro
         {status === 'editing' && <EditingIconSVG width='8' height='9' />}
         {status === 'saving' && <SavingIconSVG width='13' height='13' />}
       </StyledListSVG>
-    )
+      )
     : (
       <StyledListSVG className={className}>
         <button onClick={() => handleLinkDelete(id)}>
           <DeleteIconSVG width='14' height='14' />
         </button>
       </StyledListSVG>
-    )
+      )
 }
 
-const ListItem = ({ handleLinkDelete, handleList, id, active, status, name, className }: ListItemProps) => (
+const ListItem = ({ handleLinkDelete, handleListChangeItem, id, active, status, name, className }: ListItemProps) => (
   <StyledListItem className={className} active={active}>
-    <div className='linkSVGContainer' onClick={() => handleList(id)}>
+    <div className='linkSVGContainer' onClick={() => handleListChangeItem(id)}>
       {active ? <BlueFileSVG width='36' height='36' className='fileSVG' /> : <WhiteFileSVG width='36' height='36' opacity='0.65' className='fileSVG' />}
       <a className='link' href='/'> {name}</a>
     </div>
     <ListSVG handleLinkDelete={handleLinkDelete} id={id} active={active} status={status} />
   </StyledListItem>
 )
-const List = ({ handleLinkDelete, handleList, state, className }: ListProps) => {
+const List = ({ handleLinkDelete, handleListChangeItem, state, className }: ListProps) => {
   const { files } = state
   return (
     <ul className={className}>
       {files.map((file) => {
         return file.active
-          ? <ListItem handleLinkDelete={handleLinkDelete} handleList={handleList} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
-          : <ListItem handleLinkDelete={handleLinkDelete} handleList={handleList} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
+          ? <ListItem handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
+          : <ListItem handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} key={file.id} id={file.id} active={file.active} status={file.status} name={file.name} />
       })}
     </ul>
   )
