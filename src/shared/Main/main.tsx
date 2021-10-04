@@ -2,11 +2,11 @@ import styled from 'styled-components/macro'
 import { FileName } from 'ui/FileName'
 import { TextArea } from 'ui/TextArea/text-area'
 import { Content } from 'ui/Content'
-import { RefObject } from 'react'
+import { ChangeEvent, RefObject } from 'react'
 import { filesArrProps } from 'resources/types'
 type MainProps = {
-  handleChangeFileName: (title: string) => void,
-  handleChangeContent: (content: string) => void,
+  handleChangeFileName: (id: string) => (e: ChangeEvent<HTMLInputElement>) => void,
+  handleChangeContent: (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => void,
   className?: string,
   fileActive?: filesArrProps | undefined,
   inputRef: RefObject<HTMLInputElement>
@@ -15,8 +15,8 @@ const Main = ({ handleChangeFileName, handleChangeContent, fileActive, className
   if (!fileActive) return null
   return (
     <main className={className}>
-      <FileName onChange={handleChangeFileName} value={fileActive.name} inputRef={inputRef} />
-      <TextArea onChange={handleChangeContent} content={fileActive.content} />
+      <FileName handleChangeFileName={handleChangeFileName} file={fileActive} inputRef={inputRef} />
+      <TextArea handleChangeContent={handleChangeContent} file={fileActive} />
       <Content content={fileActive.content} />
     </main>
   )

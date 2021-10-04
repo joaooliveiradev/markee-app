@@ -1,16 +1,14 @@
 import styled from 'styled-components/macro'
 import { ChangeEvent } from 'react'
+import { filesArrProps } from 'resources/types'
 type TextAreaProps = {
   className?: string,
-  content: string,
-  onChange: (content: string) => void,
+  file: filesArrProps,
+  handleChangeContent: (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => void,
 }
-const TextArea = ({ onChange, content, className }: TextAreaProps) => {
-  const handleContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(e.currentTarget.value)
-  }
+const TextArea = ({ handleChangeContent, file, className }: TextAreaProps) => {
   return (
-    <textarea className={className} spellCheck='false' onChange={handleContent} value={content} />
+    <textarea className={className} spellCheck='false' onChange={handleChangeContent(file.id)} value={file.content} />
   )
 }
 const TextAreaStyled = styled(TextArea)`

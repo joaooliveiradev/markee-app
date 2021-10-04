@@ -1,47 +1,45 @@
 import { Sidebar } from 'shared/Sidebar'
 import { Main } from 'shared/Main'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, MouseEvent, ChangeEvent } from 'react'
 import { filesArrProps } from 'resources/types'
 import { v4 as uuidv4 } from 'uuid'
 const App = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
-  const fileActive = files.find(file => file.active === true)
   useEffect(() => {
-    if (fileActive?.status !== 'editing') return
+    const fileActive = files.find(file => file.active === true)
+    if (!fileActive || fileActive?.status !== 'editing') return
     const savingTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
       handleStatus('saving')
       setTimeout(() => {
         handleStatus('saved')
-      }, 600)
+      }, 300)
     }, 300)
-    return () => {
-      clearTimeout(savingTimer)
-    }
-  }, [files, fileActive])
+    return () => clearTimeout(savingTimer)
+  }, [files])
 
-  const handleChangeFileName = (title: string) => {
+  const handleChangeFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setFiles((files) => files.map(file => {
-      if (!file.active) {
-        return file
+      if (file.id === id) {
+        return {
+          ...file,
+          name: e.target.value,
+          status: 'editing',
+        }
       }
-      return {
-        ...file,
-        name: title,
-        status: 'editing',
-      }
+      return file
     }))
   }
-  const handleChangeContent = (content: string) => {
+  const handleChangeContent = (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => {
     setFiles((files) => files.map(file => {
-      if (!file.active) {
-        return file
+      if (file.id === id) {
+        return {
+          ...file,
+          content: e.target.value,
+          status: 'editing',
+        }
       }
-      return {
-        ...file,
-        content: content,
-        status: 'editing',
-      }
+      return file
     }))
   }
   const handleStatus = (status: 'editing' | 'saved' | 'saving') => {
@@ -56,15 +54,18 @@ const App = () => {
     }))
   }
   const handleLinkDelete = (clickId: string) => setFiles(files.filter(file => file.id !== clickId))
-  const handleListChangeItem = (clickId: string) => {
-    setFiles((files) => files.map(file => {
-      if (file.active) return { ...file, active: false }
-      if (file.id === clickId) return { ...file, active: true }
-      return { ...file }
-    }))
+  const handleListChangeItem = (clickId: string) => (e: MouseEvent) => {
     inputRef.current?.focus()
+    e.preventDefault()
+    setFiles((files) => files.map(file => {
+      return {
+        ...file,
+        active: file.id === clickId,
+      }
+    }))
   }
   const handleListAddItem = () => {
+    inputRef.current?.focus()
     const newObjValues: filesArrProps = {
       id: uuidv4(),
       name: 'Sem título',
@@ -73,12 +74,11 @@ const App = () => {
       status: 'saved',
     }
     setFiles((files) => [...files.map(file => ({ ...file, active: false })), newObjValues])
-    inputRef.current?.focus()
   }
   return (
     <>
       <Sidebar handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} handleListAddItem={handleListAddItem} files={files} />
-      <Main handleChangeFileName={handleChangeFileName} handleChangeContent={handleChangeContent} fileActive={fileActive} inputRef={inputRef} />
+      <Main handleChangeFileName={handleChangeFileName} handleChangeContent={handleChangeContent} fileActive={files.find(file => file.active === true)} inputRef={inputRef} />
     </>
   )
 }

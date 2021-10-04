@@ -3,10 +3,11 @@ import { Button } from 'ui/Button'
 import { List } from 'ui/List'
 import styled from 'styled-components/macro'
 import { filesArrProps } from 'resources/types'
+import { MouseEvent } from 'react'
 type SideBarProps = {
   className?: string,
   handleLinkDelete: (clickId: string) => void,
-  handleListChangeItem: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => (e: MouseEvent) => void,
   handleListAddItem: () => void,
   files: Array<filesArrProps>,
 }

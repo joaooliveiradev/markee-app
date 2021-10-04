@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro'
 import { WhiteFileSVG, BlueFileSVG, EditingIconSVG, SavingIconSVG, SavedIconSVG, DeleteIconSVG } from 'ui/SVGComponent/'
 import { filesArrProps } from 'resources/types'
+import { MouseEvent } from 'react'
 type ListProps = {
   handleLinkDelete: (clickId: string) => void,
-  handleListChangeItem: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => (e: MouseEvent) => void,
   files: Array<filesArrProps>,
   className?: string,
 }
@@ -16,7 +17,7 @@ type ListSVGProps = {
 }
 type ListItemProps = {
   handleLinkDelete: (clickId: string) => void,
-  handleListChangeItem: (clickId: string) => void,
+  handleListChangeItem: (clickId: string) => (e: MouseEvent) => void,
   id: string
   active: boolean,
   status: string,
@@ -45,9 +46,9 @@ const ListSVG = ({ handleLinkDelete, id, active, status, className }: ListSVGPro
 }
 const ListItem = ({ handleLinkDelete, handleListChangeItem, id, active, status, name, className }: ListItemProps) => (
   <StyledListItem className={className} active={active}>
-    <div className='linkSVGContainer' onClick={() => handleListChangeItem(id)}>
+    <div className='linkSVGContainer' onClick={handleListChangeItem(id)}>
       {active ? <BlueFileSVG width='36' height='36' className='fileSVG' /> : <WhiteFileSVG width='36' height='36' opacity='0.65' className='fileSVG' />}
-      <a className='link' href='/'> {name}</a>
+      <a className='link' href={`/file/${id}`}> {name}</a>
     </div>
     <ListSVG handleLinkDelete={handleLinkDelete} id={id} active={active} status={status} />
   </StyledListItem>
