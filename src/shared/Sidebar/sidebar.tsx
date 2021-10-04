@@ -6,17 +6,17 @@ import { filesArrProps } from 'resources/types'
 import { MouseEvent } from 'react'
 type SideBarProps = {
   className?: string,
-  handleLinkDelete: (clickId: string) => void,
-  handleListChangeItem: (clickId: string) => (e: MouseEvent) => void,
-  handleListAddItem: () => void,
+  handleDeleteFile: (clickId: string) => void,
+  handleChangeFile: (clickId: string) => (e: MouseEvent) => void,
+  handleCreateNewFile: () => void,
   files: Array<filesArrProps>,
 }
-const Sidebar = ({ handleLinkDelete, handleListChangeItem, handleListAddItem, className, files }: SideBarProps) => {
+const Sidebar = ({ handleDeleteFile, handleChangeFile, handleCreateNewFile, className, files }: SideBarProps) => {
   return (
     <aside className={className}>
       <Logo />
-      <Button handleListAddItem={handleListAddItem} />
-      <List handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} files={files} />
+      <Button handleCreateNewFile={handleCreateNewFile} />
+      <List handleDeleteFile={handleDeleteFile} handleChangeFile={handleChangeFile} files={files} />
     </aside>
   )
 }

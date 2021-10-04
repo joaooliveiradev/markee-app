@@ -10,9 +10,9 @@ const App = () => {
     const fileActive = files.find(file => file.active === true)
     if (!fileActive || fileActive?.status !== 'editing') return
     const savingTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
-      handleStatus('saving')
+      handleStatusFile('saving')
       setTimeout(() => {
-        handleStatus('saved')
+        handleStatusFile('saved')
       }, 300)
     }, 300)
     return () => clearTimeout(savingTimer)
@@ -42,7 +42,7 @@ const App = () => {
       return file
     }))
   }
-  const handleStatus = (status: 'editing' | 'saved' | 'saving') => {
+  const handleStatusFile = (status: 'editing' | 'saved' | 'saving') => {
     setFiles((files) => files.map(file => {
       if (!file.active) {
         return file
@@ -53,8 +53,8 @@ const App = () => {
       }
     }))
   }
-  const handleLinkDelete = (clickId: string) => setFiles(files.filter(file => file.id !== clickId))
-  const handleListChangeItem = (clickId: string) => (e: MouseEvent) => {
+  const handleDeleteFile = (clickId: string) => setFiles(files.filter(file => file.id !== clickId))
+  const handleChangeFile = (clickId: string) => (e: MouseEvent) => {
     inputRef.current?.focus()
     e.preventDefault()
     setFiles((files) => files.map(file => {
@@ -64,7 +64,7 @@ const App = () => {
       }
     }))
   }
-  const handleListAddItem = () => {
+  const handleCreateNewFile = () => {
     inputRef.current?.focus()
     const newObjValues: filesArrProps = {
       id: uuidv4(),
@@ -77,7 +77,7 @@ const App = () => {
   }
   return (
     <>
-      <Sidebar handleLinkDelete={handleLinkDelete} handleListChangeItem={handleListChangeItem} handleListAddItem={handleListAddItem} files={files} />
+      <Sidebar handleDeleteFile={handleDeleteFile} handleChangeFile={handleChangeFile} handleCreateNewFile={handleCreateNewFile} files={files} />
       <Main handleChangeFileName={handleChangeFileName} handleChangeContent={handleChangeContent} fileActive={files.find(file => file.active === true)} inputRef={inputRef} />
     </>
   )

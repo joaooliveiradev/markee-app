@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components'
 import { PlusSymbolSVG } from 'ui/SVGComponent'
 type ButtonProps = {
   className?: string,
-  handleListAddItem: () => void,
+  handleCreateNewFile: () => void,
 }
-const Button = ({ handleListAddItem, className }: ButtonProps) => {
+const Button = ({ handleCreateNewFile, className }: ButtonProps) => {
   return (
-    <button className={className} onClick={handleListAddItem}>
+    <button className={className} onClick={handleCreateNewFile}>
       <PlusSymbolSVG width='14' height='14' className='plusSymbolSVG' />
       Adicionar arquivo
     </button>
