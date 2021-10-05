@@ -1,7 +1,7 @@
-import { BlueFileSVG } from 'ui/SVGComponent'
 import styled, { css } from 'styled-components'
 import { RefObject, ChangeEvent } from 'react'
 import { filesArrProps } from 'resources/types'
+import * as icon from 'ui/icons'
 type FileNameProps = {
   handleChangeFileName: (id: string) => (e: ChangeEvent<HTMLInputElement>) => void,
   className?: string,
@@ -30,7 +30,7 @@ const InputStyled = styled(Input)`${({ theme }) => css`
 const FileName = ({ handleChangeFileName, className, file, inputRef }: FileNameProps) => {
   return (
     <label className={className}>
-      <BlueFileSVG width='32' height='32' />
+      <icon.FileActive />
       <InputStyled handleChangeFileName={handleChangeFileName} file={file} inputRef={inputRef} />
     </label>
   )

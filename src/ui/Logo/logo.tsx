@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 import { Divider } from 'ui/Divider'
-import { LogoSVG } from 'ui/SVGComponent/'
+import * as icon from 'ui/icons'
 type LogoContainerProps = {
   className?: string,
 }
@@ -9,7 +9,7 @@ type LogoProps = {
 }
 const Logo = ({ className }: LogoProps) => (
   <div className={className}>
-    <LogoSVG width='164' height='44' />
+    <icon.Logo width='164' height='44' />
   </div>
 )
 const LogoStyled = styled(Logo)`
