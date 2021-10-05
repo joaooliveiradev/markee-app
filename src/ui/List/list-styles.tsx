@@ -35,8 +35,9 @@ const StyledListItem = styled.li <StyledListProps>`${({ active, theme }) => css`
   cursor: pointer;
   height: 50px;
   margin: 10px 0px;
+  justify-content: space-between;
   & svg {
-    margin-right: 1.5rem;
+    margin-right: 1rem;
   }
   :hover{
     background: ${theme.colors.lightBlack};
@@ -51,8 +52,6 @@ const StyledListItem = styled.li <StyledListProps>`${({ active, theme }) => css`
   `}
 `}`
 const StyledStatusIcon = styled(StatusIcon)`
-  margin-left: auto;
-  width: 2rem;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -61,8 +60,8 @@ const StyledStatusIcon = styled(StatusIcon)`
 const StyledRemoveLink = styled.button`
   background: transparent;
   border: none;
-  margin-left: auto;
   cursor: pointer;
+  padding: 0;
 `
 const ListLink = styled.a<ListLinkProps>`${({ active }) => css`
   background: url("${active ? icon.FileActiveUrl : icon.FileUrl}") 10px calc(50% - 2px) no-repeat;
