@@ -27,10 +27,14 @@ const ContentStyled = styled(Content)`
   grid-area: result;
   height: 100%;
   font-size: 2.6rem;
-  padding-left: 20px;
+  padding: 2rem 2rem;
   color: ${({ theme }) => theme.colors.lightBlack};
+  word-break: break-all;
   h1,h2,h3,h4,h5,h5{
       margin: 0;
+  }
+  p{
+    margin: 0;
   }
 
 `

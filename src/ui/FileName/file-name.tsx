@@ -19,7 +19,7 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   border: none;
   font-weight: 600;
   color: ${theme.colors.black};
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-family: 'DM Sans',sans-serif;
   margin-left: 1rem;
   caret-color: #AAAFB8;

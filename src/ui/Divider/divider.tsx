@@ -7,10 +7,10 @@ const Divider = ({ className }: DividerProps) => (
 )
 const StyledDividerText = styled(Divider)`${({ theme }) => css`
       margin: 0;
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 500;
       color: #FFF;
-      padding-left: 7rem;
+      padding-left: 7.3rem;
       position: relative;
     ::before {
       content: '';

@@ -31,10 +31,10 @@ type ListItemProps = {
 const StyledListItem = styled.li <StyledListProps>`${({ active, theme }) => css`
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0rem;
   cursor: pointer;
-  height: 50px;
-  margin: 10px 0px;
+  height: 5rem;
+  margin: 1rem 0rem;
   justify-content: space-between;
   & svg {
     margin-right: 1rem;
@@ -42,7 +42,7 @@ const StyledListItem = styled.li <StyledListProps>`${({ active, theme }) => css`
   :hover{
     background: ${theme.colors.lightBlack};
     border-radius: 0.6rem;
-    ${StyledRemoveLink} button {
+    ${StyledButtonRemoveItem} {
       display: block;
     }
   }
@@ -57,28 +57,28 @@ const StyledStatusIcon = styled(StatusIcon)`
   flex-direction: column;
   align-items: center;
 `
-const StyledRemoveLink = styled.button`
+const StyledButtonRemoveItem = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
 `
 const ListLink = styled.a<ListLinkProps>`${({ active }) => css`
-  background: url("${active ? icon.FileActiveUrl : icon.FileUrl}") 10px calc(50% - 2px) no-repeat;
-    font-size: 2rem;
-    color: #B0B4BB;
-    text-decoration: none;
-    display: block;
-    padding-left: 50px;
+  background: url("${active ? icon.FileActiveUrl : icon.FileUrl}") 1rem calc(50% - 0.2rem) no-repeat;
+  font-size: 2rem;
+  color: #B0B4BB;
+  text-decoration: none;
+  display: block;
+  padding: 1.3rem 0px 1.3rem 5rem;
+  width: 100%;
 `}`
 const ListSVG = ({ handleDeleteFile, id, active, status }: ListSVGProps) => {
   return active
     ? <StyledStatusIcon status={status} />
     : (
-      <StyledRemoveLink onClick={() => handleDeleteFile(id)}>
+      <StyledButtonRemoveItem onClick={() => handleDeleteFile(id)}>
         <icon.DeleteIcon />
-      </StyledRemoveLink>
-      )
+      </StyledButtonRemoveItem>)
 }
 export const List = styled.ul<ListProps>`
   list-style: none;
@@ -87,8 +87,8 @@ export const List = styled.ul<ListProps>`
   padding: 0;
 `
 export const ListItem = ({ handleDeleteFile, handleChangeFile, id, active, status, name, className }: ListItemProps) => (
-  <StyledListItem className={className} active={active} onClick={handleChangeFile(id)}>
-    <ListLink className={className} active={active} href={`/file/${id}`}>{name}</ListLink>
+  <StyledListItem className={className} active={active}>
+    <ListLink className={className} active={active} href={`/file/${id}`} onClick={handleChangeFile(id)}>{name}</ListLink>
     <ListSVG handleDeleteFile={handleDeleteFile} id={id} active={active} status={status} />
   </StyledListItem>
 )

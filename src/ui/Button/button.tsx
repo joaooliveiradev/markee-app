@@ -18,7 +18,7 @@ const ButtonStyled = styled(Button)`${({ theme }) => css`
   height: 4.5rem;
   border-radius: 0.6rem;
   border-style: none;
-  font-size: 2.1rem;
+  font-size: 1.9rem;
   margin: 3rem auto;
   line-height: 1.8rem;
   letter-spacing: -0.02em;

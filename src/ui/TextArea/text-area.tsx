@@ -18,7 +18,7 @@ const TextAreaStyled = styled(TextArea)`
   font-size: 2.6rem;
   background-color: transparent;
   color:#3D4657;
-  padding-left: 3rem;
+  padding: 2rem 2rem;
   overflow-y: hidden;
   :focus{
     outline: none;

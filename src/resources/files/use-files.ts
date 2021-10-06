@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
+  console.log(files)
   useEffect(() => {
     const fileActive = files.find(file => file.active === true)
     if (!fileActive || fileActive?.status !== 'editing') return
@@ -51,7 +52,10 @@ export const useFiles = () => {
       }
     }))
   }
-  const handleDeleteFile = (clickId: string) => setFiles(files.filter(file => file.id !== clickId))
+  const handleDeleteFile = (clickId: string) => {
+    console.log(clickId)
+    setFiles(files.filter(file => file.id !== clickId))
+  }
   const handleChangeFile = (clickId: string) => (e: MouseEvent) => {
     inputRef.current?.focus()
     e.preventDefault()
