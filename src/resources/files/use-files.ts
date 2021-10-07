@@ -1,10 +1,11 @@
-import { useRef, useState, useEffect, MouseEvent, ChangeEvent } from 'react'
+import { useRef, useState, useEffect, MouseEvent, ChangeEvent, SetStateAction } from 'react'
 import { filesArrProps } from 'resources/types'
 import { v4 as uuidv4 } from 'uuid'
+import localforage from 'localforage'
+const { setItem, getItem } = localforage
 export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
-  console.log(files)
   useEffect(() => {
     const fileActive = files.find(file => file.active === true)
     if (!fileActive || fileActive?.status !== 'editing') return
@@ -16,7 +17,6 @@ export const useFiles = () => {
     }, 300)
     return () => clearTimeout(savingTimer)
   }, [files])
-
   const handleChangeFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setFiles((files) => files.map(file => {
       if (file.id === id) {
@@ -53,7 +53,6 @@ export const useFiles = () => {
     }))
   }
   const handleDeleteFile = (clickId: string) => {
-    console.log(clickId)
     setFiles(files.filter(file => file.id !== clickId))
   }
   const handleChangeFile = (clickId: string) => (e: MouseEvent) => {
@@ -76,6 +75,7 @@ export const useFiles = () => {
       status: 'saved',
     }
     setFiles((files) => [...files.map(file => ({ ...file, active: false })), newObjValues])
+    setItem('files', [...files.map(file => ({ ...file, active: false })), newObjValues])
   }
   return {
     inputRef,
