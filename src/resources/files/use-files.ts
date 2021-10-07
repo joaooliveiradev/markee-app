@@ -7,12 +7,13 @@ export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
   useEffect(() => {
+    setItem('files', files)
     const fileActive = files.find(file => file.active === true)
     if (!fileActive || fileActive?.status !== 'editing') return
     const savingTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
-      handleStatusFile('saving')
+      setFiles((files) => handleStatusFile('saving', files))
       setTimeout(() => {
-        handleStatusFile('saved')
+        setFiles((files) => handleStatusFile('saved', files))
       }, 300)
     }, 300)
     return () => clearTimeout(savingTimer)
@@ -41,8 +42,8 @@ export const useFiles = () => {
       return file
     }))
   }
-  const handleStatusFile = (status: 'editing' | 'saved' | 'saving') => {
-    setFiles((files) => files.map(file => {
+  const handleStatusFile = (status: 'editing' | 'saved' | 'saving', files: Array<filesArrProps>) => {
+    return files.map(file => {
       if (!file.active) {
         return file
       }
@@ -50,11 +51,10 @@ export const useFiles = () => {
         ...file,
         status: status,
       }
-    }))
+    })
   }
   const handleDeleteFile = (clickId: string) => {
     setFiles(files.filter(file => file.id !== clickId))
-    setItem('files', files.filter(file => file.id !== clickId))
   }
   const handleChangeFile = (clickId: string) => (e: MouseEvent) => {
     inputRef.current?.focus()
@@ -76,7 +76,6 @@ export const useFiles = () => {
       status: 'saved',
     }
     setFiles((files) => [...files.map(file => ({ ...file, active: false })), newObjValues])
-    setItem('files', [...files.map(file => ({ ...file, active: false })), newObjValues])
   }
   return {
     inputRef,
