@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect, MouseEvent, ChangeEvent, SetStateAction } from 'react'
+import { useRef, useState, useEffect, MouseEvent, ChangeEvent } from 'react'
 import { filesArrProps } from 'resources/types'
 import { v4 as uuidv4 } from 'uuid'
 import localforage from 'localforage'
-const { setItem, getItem } = localforage
+const { setItem } = localforage
 export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
@@ -54,6 +54,7 @@ export const useFiles = () => {
   }
   const handleDeleteFile = (clickId: string) => {
     setFiles(files.filter(file => file.id !== clickId))
+    setItem('files', files.filter(file => file.id !== clickId))
   }
   const handleChangeFile = (clickId: string) => (e: MouseEvent) => {
     inputRef.current?.focus()
