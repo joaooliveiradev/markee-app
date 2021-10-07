@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect, MouseEvent, ChangeEvent } from 'react'
 import { filesArrProps } from 'resources/types'
-import { v4 as uuidv4 } from 'uuid'
 import localforage from 'localforage'
-const { setItem } = localforage
+import { v4 as uuidv4 } from 'uuid'
+const { setItem, getItem } = localforage
 export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
@@ -17,6 +17,23 @@ export const useFiles = () => {
       }, 300)
     }, 300)
     return () => clearTimeout(savingTimer)
+  }, [files])
+  useEffect(() => {
+    async function getData () {
+      const data = await getItem('files').then(f => f)
+      if (data === null) {
+        const newObjStorage: filesArrProps = {
+          id: uuidv4(),
+          name: 'Sem título',
+          content: '',
+          active: true,
+          status: 'saved',
+        }
+        setItem('files', [newObjStorage])
+      }
+      return data
+    }
+    getData()
   }, [files])
   const handleChangeFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setFiles((files) => files.map(file => {
@@ -75,6 +92,7 @@ export const useFiles = () => {
       active: true,
       status: 'saved',
     }
+
     setFiles((files) => [...files.map(file => ({ ...file, active: false })), newObjValues])
   }
   return {
