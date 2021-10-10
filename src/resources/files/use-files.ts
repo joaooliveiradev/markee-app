@@ -7,7 +7,24 @@ export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
   useEffect(() => {
-    setItem('files', files)
+    async function getData () {
+      const newObjValues: filesArrProps = {
+        id: uuidv4(),
+        name: 'Sem título',
+        content: '',
+        active: true,
+        status: 'saved',
+      }
+      const data = await getItem('files').then((f: any) => f)
+      data === null
+        ? setFiles([newObjValues])
+        : setFiles(data)
+    }
+    getData()
+  }, [])
+  useEffect(() => {
+    const setData = async () => await setItem('files', files)
+    setData()
     const fileActive = files.find(file => file.active === true)
     if (!fileActive || fileActive?.status !== 'editing') return
     const savingTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
@@ -16,24 +33,9 @@ export const useFiles = () => {
         setFiles((files) => handleStatusFile('saved', files))
       }, 300)
     }, 300)
-    return () => clearTimeout(savingTimer)
-  }, [files])
-  useEffect(() => {
-    async function getData () {
-      const data = await getItem('files').then(f => f)
-      if (data === null) {
-        const newObjStorage: filesArrProps = {
-          id: uuidv4(),
-          name: 'Sem título',
-          content: '',
-          active: true,
-          status: 'saved',
-        }
-        setItem('files', [newObjStorage])
-      }
-      return data
+    return () => {
+      clearTimeout(savingTimer)
     }
-    getData()
   }, [files])
   const handleChangeFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setFiles((files) => files.map(file => {
@@ -92,7 +94,6 @@ export const useFiles = () => {
       active: true,
       status: 'saved',
     }
-
     setFiles((files) => [...files.map(file => ({ ...file, active: false })), newObjValues])
   }
   return {
