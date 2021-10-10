@@ -1,22 +1,42 @@
 import { useRef, useState, useEffect, MouseEvent, ChangeEvent } from 'react'
 import { filesArrProps } from 'resources/types'
+import localforage from 'localforage'
 import { v4 as uuidv4 } from 'uuid'
+const { setItem, getItem } = localforage
 export const useFiles = () => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [files, setFiles] = useState<Array<filesArrProps>>([])
-  console.log(files)
   useEffect(() => {
+    async function getData () {
+      const newObjValues: filesArrProps = {
+        id: uuidv4(),
+        name: 'Sem título',
+        content: '',
+        active: true,
+        status: 'saved',
+      }
+      const data = await getItem('files').then((f: any) => f)
+      data === null
+        ? setFiles([newObjValues])
+        : setFiles(data)
+    }
+    getData()
+  }, [])
+  useEffect(() => {
+    const setData = async () => await setItem('files', files)
+    setData()
     const fileActive = files.find(file => file.active === true)
     if (!fileActive || fileActive?.status !== 'editing') return
     const savingTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
-      handleStatusFile('saving')
+      setFiles((files) => handleStatusFile('saving', files))
       setTimeout(() => {
-        handleStatusFile('saved')
+        setFiles((files) => handleStatusFile('saved', files))
       }, 300)
     }, 300)
-    return () => clearTimeout(savingTimer)
+    return () => {
+      clearTimeout(savingTimer)
+    }
   }, [files])
-
   const handleChangeFileName = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
     setFiles((files) => files.map(file => {
       if (file.id === id) {
@@ -41,8 +61,8 @@ export const useFiles = () => {
       return file
     }))
   }
-  const handleStatusFile = (status: 'editing' | 'saved' | 'saving') => {
-    setFiles((files) => files.map(file => {
+  const handleStatusFile = (status: 'editing' | 'saved' | 'saving', files: Array<filesArrProps>) => {
+    return files.map(file => {
       if (!file.active) {
         return file
       }
@@ -50,10 +70,9 @@ export const useFiles = () => {
         ...file,
         status: status,
       }
-    }))
+    })
   }
   const handleDeleteFile = (clickId: string) => {
-    console.log(clickId)
     setFiles(files.filter(file => file.id !== clickId))
   }
   const handleChangeFile = (clickId: string) => (e: MouseEvent) => {
