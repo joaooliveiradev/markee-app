@@ -22,23 +22,23 @@ You can view the project layout via [this link.](https://www.figma.com/file/EFZC
 
 <h3>Installing and running the project</h3>
 
-- Clone the repository and access the folder.
-  ```
+Clone the repository and access the folder.
+  ```bash
   $ git clone https://github.com/joaooliveiradev/markee-app
   $ cd markee-app
   ```
-- Install dependencies.
-  ```
+Install dependencies.
+  ```bash
   $ yarn
   # or
   $ npm install 
   ```
-- To start the project, follow the steps below.
-  ```
+To start the project, follow the steps below.
+  ```bash
   $ yarn dev
   # or
   $ npm run dev
   ```
-- Open [localhost:3000](http://localhost:3000) to view in browser.
+Open [localhost:3000](http://localhost:3000) to view in browser.
 ## 🦸 Autor
-- [João Oliveira](https://github.com/joaooliveiradev)
+[João Oliveira](https://github.com/joaooliveiradev)
