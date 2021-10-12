@@ -8,6 +8,9 @@ export const useFiles = () => {
   const [files, setFiles] = useState<Array<filesArrProps>>([])
   useEffect(() => {
     const fileActive = files.find(file => file.active === true)
+    if (fileActive) {
+      window.history.replaceState(null, '', `/file/${fileActive.id}`)
+    }
     if (!fileActive || fileActive?.status !== 'editing') return
     const savingTimer: ReturnType<typeof setTimeout> = setTimeout(() => {
       setFiles((files) => handleStatusFile('saving', files))
@@ -31,11 +34,9 @@ export const useFiles = () => {
       return file
     }))
   }
-
   useEffect(() => {
     setItem('files', files)
   }, [files])
-
   useEffect(() => {
     async function getData () {
       const data = await getItem<filesArrProps[]>('files')
@@ -47,7 +48,6 @@ export const useFiles = () => {
     }
     getData()
   }, [])
-
   const handleChangeContent = (id: string) => (e: ChangeEvent<HTMLTextAreaElement>) => {
     setFiles((files) => files.map(file => {
       if (file.id === id) {
