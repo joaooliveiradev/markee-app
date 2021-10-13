@@ -17,7 +17,6 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   width: 100%;
   background-color: #F9FBFF;
   border: none;
-  font-weight: 600;
   color: ${theme.colors.black};
   font-size: 2.2rem;
   font-family: 'DM Sans',sans-serif;
@@ -39,6 +38,6 @@ const FileNameStyled = styled(FileName)`
   height: 4rem;
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `
 export { FileNameStyled as FileName }
