@@ -71,6 +71,8 @@ const ListLink = styled.a<ListLinkProps>`${({ active }) => css`
   display: block;
   padding: 1.3rem 0px 1.3rem 5rem;
   width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `}`
 const ListSVG = ({ handleDeleteFile, id, active, status }: ListSVGProps) => {
   return active
