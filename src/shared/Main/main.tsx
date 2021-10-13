@@ -16,25 +16,24 @@ const Main = ({ handleChangeFileName, handleChangeContent, fileActive, className
   return (
     <main className={className}>
       <FileName handleChangeFileName={handleChangeFileName} file={fileActive} inputRef={inputRef} />
-      <TextArea handleChangeContent={handleChangeContent} file={fileActive} />
-      <Content content={fileActive.content} />
+      <div className='ResultContainer'>
+        <TextArea handleChangeContent={handleChangeContent} file={fileActive} />
+        <Content content={fileActive.content} />
+      </div>
     </main>
   )
 }
 const StyledMain = styled(Main)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: 'filename filename'
-                        'textarea result';
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
   background-color: #F9FBFF;
-  ::before {
-    content: '';
-    position: absolute;
-    width: 0.2rem;
-    height: 94%;
-    background-color: ${({ theme }) => theme.colors.gray};
-    margin: auto;
+  .ResultContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow-y: hidden;
   }
+  padding: 2rem 2rem;
 `
 export { StyledMain as Main }

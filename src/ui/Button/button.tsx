@@ -14,11 +14,11 @@ const Button = ({ handleCreateNewFile, className }: ButtonProps) => {
 }
 const ButtonStyled = styled(Button)`${({ theme }) => css`
   background-color:  ${theme.colors.primary};
-  width: 34.5rem;
+  width: 30.5rem;
   height: 4.5rem;
   border-radius: 0.6rem;
   border-style: none;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   margin: 3rem auto;
   line-height: 1.8rem;
   letter-spacing: -0.02em;

@@ -17,7 +17,6 @@ const InputStyled = styled(Input)`${({ theme }) => css`
   width: 100%;
   background-color: #F9FBFF;
   border: none;
-  font-weight: 600;
   color: ${theme.colors.black};
   font-size: 2.2rem;
   font-family: 'DM Sans',sans-serif;
@@ -36,10 +35,9 @@ const FileName = ({ handleChangeFileName, className, file, inputRef }: FileNameP
   )
 }
 const FileNameStyled = styled(FileName)`
-  grid-area: filename;
   height: 4rem;
   display: flex;
   align-items: center;
-  margin: 2rem 3rem 3rem 3rem;
+  margin-bottom: 20px;
 `
 export { FileNameStyled as FileName }

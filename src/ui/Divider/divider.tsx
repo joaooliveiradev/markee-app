@@ -10,7 +10,7 @@ const StyledDividerText = styled(Divider)`${({ theme }) => css`
       font-size: 1.8rem;
       font-weight: 500;
       color: #FFF;
-      padding-left: 7.3rem;
+      padding-left: 6.6rem;
       position: relative;
     ::before {
       content: '';
@@ -20,18 +20,18 @@ const StyledDividerText = styled(Divider)`${({ theme }) => css`
       border-radius: 1rem;
       position: absolute;
       top: 47%;
-      left: 3.6rem;
+      left: 2.7rem;
       background-color: ${theme.colors.primary};
     }
     ::after {
       content: '';
       display: block;
-      width: 22.7rem;
+      width: 18rem;
       height: 0.4rem;
       border-radius: 1rem;
       position: absolute;
       top: 47%;
-      left: 15.6rem;
+      left: 15rem;
       background-color: ${theme.colors.primary};
     }
 `}`
