@@ -16,7 +16,7 @@ const TextAreaStyled = styled(TextArea)`
   grid-area: textarea;
   height: 100%;
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   background-color: transparent;
   color:#3D4657;
   padding-right: 3rem;
