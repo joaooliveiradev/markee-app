@@ -36,10 +36,9 @@ const FileName = ({ handleChangeFileName, className, file, inputRef }: FileNameP
   )
 }
 const FileNameStyled = styled(FileName)`
-  grid-area: filename;
   height: 4rem;
   display: flex;
   align-items: center;
-  margin: 2rem 3rem 3rem 3rem;
+  margin-bottom: 10px;
 `
 export { FileNameStyled as FileName }

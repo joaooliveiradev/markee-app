@@ -12,16 +12,21 @@ const TextArea = ({ handleChangeContent, file, className }: TextAreaProps) => {
   )
 }
 const TextAreaStyled = styled(TextArea)`
+  width: 50%;
   grid-area: textarea;
   height: 100%;
   border: none;
-  font-size: 2.6rem;
+  font-size: 1.8rem;
   background-color: transparent;
   color:#3D4657;
-  padding: 2rem 2rem;
-  overflow-y: hidden;
+  padding-right: 3rem;
   :focus{
     outline: none;
   }
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+      display: none;
+  }
+  border-right: 1px solid ${({ theme }) => theme.colors.gray};
 `
 export { TextAreaStyled as TextArea }

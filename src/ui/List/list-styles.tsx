@@ -65,7 +65,7 @@ const StyledButtonRemoveItem = styled.button`
 `
 const ListLink = styled.a<ListLinkProps>`${({ active }) => css`
   background: url("${active ? icon.FileActiveUrl : icon.FileUrl}") 1rem calc(50% - 0.2rem) no-repeat;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #B0B4BB;
   text-decoration: none;
   display: block;
@@ -82,7 +82,7 @@ const ListSVG = ({ handleDeleteFile, id, active, status }: ListSVGProps) => {
 }
 export const List = styled.ul<ListProps>`
   list-style: none;
-  width: 34.5rem;
+  width: 30.5rem;
   margin: 0 auto;
   padding: 0;
 `

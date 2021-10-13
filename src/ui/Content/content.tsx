@@ -25,17 +25,37 @@ const Content = ({ content, className }: ContentProps) => {
 }
 const ContentStyled = styled(Content)`
   grid-area: result;
+  width: 50%;
   height: 100%;
-  font-size: 2.6rem;
-  padding: 2rem 2rem;
+  font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.lightBlack};
   word-break: break-all;
-  h1,h2,h3,h4,h5,h5{
-      margin: 0;
+  overflow-y: scroll;
+  padding-left: 3rem;
+  h1{
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 2.6rem;
+  }
+  h3 {
+    font-size: 2.4rem;
+  }
+  h4 {
+    font-size: 2.2rem;
+  }
+  h5 {
+    font-size: 2rem;
+  }
+  h6 {
+    font-size: 1.8rem;
   }
   p{
     margin: 0;
+    font-size: 1.6rem;
   }
-
+  ::-webkit-scrollbar {
+      display: none;
+  }
 `
 export { ContentStyled as Content }

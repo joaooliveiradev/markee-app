@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 42rem 1fr;
+    grid-template-columns: 36rem 1fr;
   }
 `
 export { Root }
