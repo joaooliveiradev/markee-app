@@ -34,6 +34,25 @@ const StyledMain = styled(Main)`
     display: flex;
     overflow-y: hidden;
   }
+  @media(max-width: 1024px){
+    overflow-y: unset;
+    .ResultContainer{
+      flex-direction: column;
+    }
+    ${FileName}{
+      margin-bottom: 2rem;
+    }
+    ${TextArea} {
+      min-height: 40rem;
+      padding-right: 0;
+      width: 100%;
+    }
+    ${Content}{
+      padding: 0;
+      width: 100%;
+      overflow-y: unset;
+    }
+  }
   padding: 2rem 2rem;
 `
 export { StyledMain as Main }

@@ -24,6 +24,11 @@ const SidebarStyled = styled(Sidebar)`
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.black};
+  @media(max-width: 1024px){
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+  }
 `
 
 export { SidebarStyled as Sidebar }

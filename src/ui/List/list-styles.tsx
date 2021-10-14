@@ -87,6 +87,12 @@ export const List = styled.ul<ListProps>`
   width: 30.5rem;
   margin: 0 auto;
   padding: 0;
+  @media(max-width: 1024px){
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 0 1rem;
+  }
 `
 export const ListItem = ({ handleDeleteFile, handleChangeFile, id, active, status, name, className }: ListItemProps) => (
   <StyledListItem className={className} active={active}>
