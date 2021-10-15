@@ -69,6 +69,10 @@ const ListLink = styled.a<ListLinkProps>`
   display: block;
   text-overflow: ellipsis;
   overflow: hidden;
+  @media(max-width: 1024px){
+    width: 10rem;
+    white-space: nowrap;
+  }
 `
 const ListSVG = ({ handleDeleteFile, id, active, status }: ListSVGProps) => {
   return active

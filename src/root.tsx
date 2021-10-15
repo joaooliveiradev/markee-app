@@ -22,14 +22,11 @@ const GlobalStyle = createGlobalStyle`
   [data-js="app"]{
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: 36rem 1fr;
+    display: flex;
   }
   @media(max-width: 1024px){
     [data-js="app"]{
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto 1fr;
+      flex-direction: column;
     }
   }
 `

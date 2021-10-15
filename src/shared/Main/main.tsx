@@ -28,6 +28,7 @@ const StyledMain = styled(Main)`
   display: flex;
   flex-direction: column;
   background-color: #F9FBFF;
+  width: 100%;
   .ResultContainer {
     width: 100%;
     height: 100%;
