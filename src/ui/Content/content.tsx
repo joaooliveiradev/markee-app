@@ -61,5 +61,13 @@ const ContentStyled = styled(Content)`
   ::-webkit-scrollbar {
       display: none;
   }
+ @media(max-width: 1024px){
+      padding: 0;
+      width: 100%;
+      overflow-y: unset;
+      pre {
+        white-space: pre-wrap;
+      }
+    }
 `
 export { ContentStyled as Content }

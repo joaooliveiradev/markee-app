@@ -28,5 +28,11 @@ const TextAreaStyled = styled(TextArea)`
   ::-webkit-scrollbar {
       display: none;
   }
+  @media(max-width: 1024px){
+      min-height: 40rem;
+      padding-right: 0;
+      width: 100%;
+      border: none;
+  }
 `
 export { TextAreaStyled as TextArea }

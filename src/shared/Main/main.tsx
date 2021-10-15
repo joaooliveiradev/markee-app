@@ -40,23 +40,6 @@ const StyledMain = styled(Main)`
     .ResultContainer{
       flex-direction: column;
     }
-    ${FileName}{
-      margin-bottom: 2rem;
-    }
-    ${TextArea} {
-      min-height: 40rem;
-      padding-right: 0;
-      width: 100%;
-      border: none;
-    }
-    ${Content}{
-      padding: 0;
-      width: 100%;
-      overflow-y: unset;
-      pre {
-        white-space: pre-wrap;
-      }
-    }
   }
   padding: 2rem 2rem;
 `
