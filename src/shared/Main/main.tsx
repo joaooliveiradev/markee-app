@@ -47,6 +47,7 @@ const StyledMain = styled(Main)`
       min-height: 40rem;
       padding-right: 0;
       width: 100%;
+      border: none;
     }
     ${Content}{
       padding: 0;

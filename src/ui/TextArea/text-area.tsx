@@ -20,6 +20,7 @@ const TextAreaStyled = styled(TextArea)`
   background-color: transparent;
   color:#3D4657;
   padding-right: 3rem;
+  border-right: 1px solid ${({ theme }) => theme.colors.gray};
   :focus{
     outline: none;
   }
@@ -27,6 +28,5 @@ const TextAreaStyled = styled(TextArea)`
   ::-webkit-scrollbar {
       display: none;
   }
-  border-right: 1px solid ${({ theme }) => theme.colors.gray};
 `
 export { TextAreaStyled as TextArea }
