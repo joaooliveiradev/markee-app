@@ -33,7 +33,7 @@ const StyledListItem = styled.li <StyledListProps>`${({ active, theme }) => css`
   align-items: center;
   cursor: pointer;
   height: 5rem;
-  margin: 1rem 0rem;
+  margin: 1rem 1rem;
   justify-content: space-between;
   & svg {
     margin: 0 1rem;
