@@ -54,6 +54,10 @@ const ContentStyled = styled(Content)`
     margin: 0;
     font-size: 1.6rem;
   }
+  ul {
+    list-style-position: inside;
+    padding: 0;
+  }
   ::-webkit-scrollbar {
       display: none;
   }

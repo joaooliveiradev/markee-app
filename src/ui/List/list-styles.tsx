@@ -28,12 +28,12 @@ type ListItemProps = {
   name: string,
   className?: string,
 }
-const StyledListItem = styled.li <StyledListProps>`${({ active, theme }) => css`
+const StyledListItem = styled.li<StyledListProps>`${({ active, theme }) => css`
   display: flex;
   align-items: center;
   cursor: pointer;
   height: 5rem;
-  margin: 1rem 1rem;
+  margin: 1rem 0rem;
   justify-content: space-between;
   & svg {
     margin: 0 1rem;
@@ -91,7 +91,7 @@ export const List = styled.ul<ListProps>`
     display: flex;
     width: 100%;
     overflow-x: scroll;
-    padding: 0 1rem;
+    gap: 1.5rem;
   }
 `
 export const ListItem = ({ handleDeleteFile, handleChangeFile, id, active, status, name, className }: ListItemProps) => (

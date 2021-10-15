@@ -19,7 +19,7 @@ const ButtonStyled = styled(Button)`${({ theme }) => css`
   border-radius: 0.6rem;
   border-style: none;
   font-size: 1.8rem;
-  margin: 3rem auto;
+  margin: 3rem 0rem;
   line-height: 1.8rem;
   letter-spacing: -0.02em;
   color: ${theme.colors.lightBlack};
@@ -31,6 +31,10 @@ const ButtonStyled = styled(Button)`${({ theme }) => css`
     margin-right: 1rem;
     height: 1.7rem;
     width: auto;
+  }
+  @media(max-width: 1024px){
+    width: auto;
+    padding: 0 3rem;
   }
 `}`
 export { ButtonStyled as Button }
