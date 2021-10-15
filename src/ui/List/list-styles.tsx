@@ -63,12 +63,13 @@ const StyledButtonRemoveItem = styled.button`
   padding: 0;
 `
 const ListLink = styled.a<ListLinkProps>`
+  width: 200px;
   font-size: 1.8rem;
   color: #B0B4BB;
   text-decoration: none;
-  display: block;
   text-overflow: ellipsis;
   overflow: hidden;
+  text-align: center;
   @media(max-width: 1024px){
     width: 10rem;
     white-space: nowrap;
