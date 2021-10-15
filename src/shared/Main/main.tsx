@@ -53,6 +53,9 @@ const StyledMain = styled(Main)`
       padding: 0;
       width: 100%;
       overflow-y: unset;
+      pre {
+        white-space: pre-wrap;
+      }
     }
   }
   padding: 2rem 2rem;
