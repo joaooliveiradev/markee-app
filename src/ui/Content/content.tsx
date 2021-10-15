@@ -54,8 +54,20 @@ const ContentStyled = styled(Content)`
     margin: 0;
     font-size: 1.6rem;
   }
+  ul {
+    list-style-position: inside;
+    padding: 0;
+  }
   ::-webkit-scrollbar {
       display: none;
   }
+ @media(max-width: 1024px){
+      padding: 0;
+      width: 100%;
+      overflow-y: unset;
+      pre {
+        white-space: pre-wrap;
+      }
+    }
 `
 export { ContentStyled as Content }

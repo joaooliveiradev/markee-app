@@ -28,11 +28,18 @@ const StyledMain = styled(Main)`
   display: flex;
   flex-direction: column;
   background-color: #F9FBFF;
+  width: 100%;
   .ResultContainer {
     width: 100%;
     height: 100%;
     display: flex;
     overflow-y: hidden;
+  }
+  @media(max-width: 1024px){
+    overflow-y: unset;
+    .ResultContainer{
+      flex-direction: column;
+    }
   }
   padding: 2rem 2rem;
 `

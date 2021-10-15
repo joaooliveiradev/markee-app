@@ -16,10 +16,11 @@ const TextAreaStyled = styled(TextArea)`
   grid-area: textarea;
   height: 100%;
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   background-color: transparent;
   color:#3D4657;
   padding-right: 3rem;
+  border-right: 1px solid ${({ theme }) => theme.colors.gray};
   :focus{
     outline: none;
   }
@@ -27,6 +28,11 @@ const TextAreaStyled = styled(TextArea)`
   ::-webkit-scrollbar {
       display: none;
   }
-  border-right: 1px solid ${({ theme }) => theme.colors.gray};
+  @media(max-width: 1024px){
+      min-height: 40rem;
+      padding-right: 0;
+      width: 100%;
+      border: none;
+  }
 `
 export { TextAreaStyled as TextArea }

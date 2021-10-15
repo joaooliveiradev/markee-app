@@ -39,5 +39,8 @@ const FileNameStyled = styled(FileName)`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  @media(max-width: 1024px){
+    margin-bottom: 2rem;
+  }
 `
 export { FileNameStyled as FileName }
