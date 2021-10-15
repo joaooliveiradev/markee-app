@@ -10,17 +10,16 @@ const StyledDividerText = styled(Divider)`${({ theme }) => css`
       font-size: 1.8rem;
       font-weight: 500;
       color: #FFF;
-      padding-left: 6.6rem;
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     ::before {
       content: '';
       display: block;
       width: 2.8rem;
       height: 0.4rem;
       border-radius: 1rem;
-      position: absolute;
-      top: 47%;
-      left: 2.7rem;
       background-color: ${theme.colors.primary};
     }
     ::after {
@@ -29,10 +28,12 @@ const StyledDividerText = styled(Divider)`${({ theme }) => css`
       width: 18rem;
       height: 0.4rem;
       border-radius: 1rem;
-      position: absolute;
-      top: 47%;
-      left: 15rem;
       background-color: ${theme.colors.primary};
     }
+     @media(max-width: 1024px){
+      ::after {
+        width: 7rem;
+      }
+     }
 `}`
 export { StyledDividerText as Divider }
