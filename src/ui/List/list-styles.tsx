@@ -92,6 +92,7 @@ export const List = styled.ul<ListProps>`
     width: 100%;
     overflow-x: scroll;
     gap: 1.5rem;
+    padding: 0 1rem;
   }
 `
 export const ListItem = ({ handleDeleteFile, handleChangeFile, id, active, status, name, className }: ListItemProps) => (
