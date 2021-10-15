@@ -28,6 +28,7 @@ type ListItemProps = {
   name: string,
   className?: string,
 }
+
 const StyledListItem = styled.li<StyledListProps>`${({ active, theme }) => css`
   display: flex;
   align-items: center;
@@ -63,17 +64,12 @@ const StyledButtonRemoveItem = styled.button`
   padding: 0;
 `
 const ListLink = styled.a<ListLinkProps>`
-  width: 200px;
+  width: 100%;
   font-size: 1.8rem;
   color: #B0B4BB;
   text-decoration: none;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  text-align: center;
-  white-space: nowrap;
-  @media(max-width: 1024px){
-    width: 10rem;
-  }
+  display: flex;
+  align-items: center;
 `
 const ListSVG = ({ handleDeleteFile, id, active, status }: ListSVGProps) => {
   return active
@@ -83,6 +79,16 @@ const ListSVG = ({ handleDeleteFile, id, active, status }: ListSVGProps) => {
         <icon.DeleteIcon />
       </StyledButtonRemoveItem>)
 }
+
+const ListText = styled.span<ListProps>`
+  text-overflow: ellipsis;
+  overflow: hidden;;
+  white-space: nowrap;
+  width: 21.5rem;
+  @media(max-width: 1024px){
+    width: 12.5rem;
+  }
+`
 export const List = styled.ul<ListProps>`
   list-style: none;
   width: 30.5rem;
@@ -98,8 +104,10 @@ export const List = styled.ul<ListProps>`
 `
 export const ListItem = ({ handleDeleteFile, handleChangeFile, id, active, status, name, className }: ListItemProps) => (
   <StyledListItem className={className} active={active}>
-    {active ? <icon.FileActive /> : <icon.File />}
-    <ListLink className={className} active={active} href={`/file/${id}`} onClick={handleChangeFile(id)}>{name}</ListLink>
+    <ListLink className={className} active={active} href={`/file/${id}`} onClick={handleChangeFile(id)}>
+      {active ? <icon.FileActive /> : <icon.File />}
+      <ListText>{name}</ListText>
+    </ListLink>
     <ListSVG handleDeleteFile={handleDeleteFile} id={id} active={active} status={status} />
   </StyledListItem>
 )
