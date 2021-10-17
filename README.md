@@ -2,6 +2,7 @@
   <img src="./public/logo192.png" alt="Logo Markee"/>
   <br>
   Markee App
+  <h3 align="center"><a href="https://markee-app-joaooliveiradev.netlify.app/">View Demo</a></h3>
 </h1>
 
 ## 📝 About the project
